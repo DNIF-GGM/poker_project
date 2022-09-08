@@ -24,6 +24,9 @@ public class CardSlot : MonoBehaviour
             if(i.SequenceEqual(_cardSlot)){
                 Debug.Log(CardManager.Instance.HandRanking.FirstOrDefault(x => x.Value == i).Key); //프리팹 추가 후 풀매니저 소환으로 변경
             }
+            else{
+                Debug.Log("어캐 돌아가지..?");
+            }
             _cardSlot.Clear();
         }
     }

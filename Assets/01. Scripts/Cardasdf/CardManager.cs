@@ -10,7 +10,7 @@ public class CardManager : MonoBehaviour
     public List<CardSlot> CardSlots { get => _cardSlots; set => _cardSlots = value; }
 
     private Dictionary<string, List<CardEnum>> _handRankings = new Dictionary<string, List<CardEnum>>(){
-        {"족보이름", new List<CardEnum>() {CardEnum.One, CardEnum.Two, CardEnum.Three}} //족보 생기면 추가 예정
+        {"족보이름", new List<CardEnum>() {CardEnum.Spade_One, CardEnum.Spade_Two, CardEnum.Spade_Three}} //족보 생기면 추가 예정
     };
     public Dictionary<string, List<CardEnum>> HandRanking { get => _handRankings; }
 
