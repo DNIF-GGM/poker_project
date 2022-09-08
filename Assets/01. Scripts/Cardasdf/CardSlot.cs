@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CardSlot : MonoBehaviour
 {
-    private List<CardEnum> _cardSlot = new List<CardEnum>();
+    [SerializeField] private List<CardEnum> _cardSlot = new List<CardEnum>();
 
     private void Start(){
         CardManager.Instance.CardSlots.Add(this);    
     }
 
-    public void SetCard(CardEnum card){
-        _cardSlot.Add(card); //드래그 앤 드롭시 해당 카드의 상태를 매개변수로 등록하여 리스트 추가
+    public void SetCard(){
+        if(SlotManager.Instance.currentSelectedCard != null) _cardSlot.Add(SlotManager.Instance.currentSelectedCard.CardEnum); //드래그 앤 드롭시 해당 카드의 상태를 매개변수로 등록하여 리스트 추가
     }
 
     public void CheckSlot(){

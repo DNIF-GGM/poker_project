@@ -14,9 +14,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null) { Debug.LogWarning("Multple " + this.GetType() + " Instance is Running, Destroy This"); Destroy(gameObject); }
-        else { Instance = this; }
-
         foreach(AudioClip ac in clipList)
         {
             if(clips.ContainsKey(ac.name))

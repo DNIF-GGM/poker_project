@@ -12,9 +12,6 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null) { Debug.LogWarning("Multple " + this.GetType() + " Instance is Running, Destroy This"); Destroy(gameObject); }
-        else { Instance = this; }
-
         if(!TryReadJson<UserData>(out userData))
             userData = new UserData() {};
         if(!TryReadJson<UserSetting>(out userSetting))

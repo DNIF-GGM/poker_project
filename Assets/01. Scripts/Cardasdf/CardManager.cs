@@ -14,10 +14,6 @@ public class CardManager : MonoBehaviour
     };
     public Dictionary<string, List<CardEnum>> HandRanking { get => _handRankings; }
 
-    private void Awake() {
-        if(Instance == null) Instance = this; //나중에 게임매니저로 옮겨야댐
-    }
-
     private void Update() {
         //Test
         if(Input.GetKeyDown(KeyCode.K)){
