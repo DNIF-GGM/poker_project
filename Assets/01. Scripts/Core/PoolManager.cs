@@ -11,7 +11,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null) { Debug.LogWarning("Multple PoolManager is Running, Destroy Root GameObject"); Destroy(transform.root.gameObject); }
+        if(Instance != null) { Debug.LogWarning("Multple " + this.GetType() + " Instance is Running, Destroy This"); Destroy(gameObject); }
         else { Instance = this; }
 
         parent = transform.GetChild(0);
