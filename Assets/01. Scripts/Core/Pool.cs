@@ -40,6 +40,7 @@ public class Pool<T> where T : PoolableMono
 
     public void Push(T obj)
     {
+        if(obj.name == "Card") obj.transform.SetParent(_parent);
         obj.gameObject.SetActive(false);
         _pool.Push(obj);
     }

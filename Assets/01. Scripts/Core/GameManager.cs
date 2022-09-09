@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<PoolableMono> _poolingList;
 
+    private bool _gameOver = false;
+    public bool GameOver { get => _gameOver; set => _gameOver = value; }
+
     private void Awake() {
         if(Instance == null) Instance = this;
 
@@ -18,5 +21,6 @@ public class GameManager : MonoBehaviour
         CardManager.Instance = gameObject.GetComponent<CardManager>();
         SlotManager.Instance = gameObject.AddComponent<SlotManager>();
         StageManager.Instance = gameObject.GetComponent<StageManager>();
+        CoinManager.Instance = gameObject.AddComponent<CoinManager>();
     }
 }
