@@ -12,10 +12,13 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null) { Debug.LogWarning("Multiple DataManager Instance is Running, Destroy This"); Destroy(gameObject); return; }
+        else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+        
         if(!TryReadJson<UserData>(out userData))
             userData = new UserData() {};
         if(!TryReadJson<UserSetting>(out userSetting))
-            userSetting = new UserSetting() { effectVolume = 0.5f, masterVolume = 0.5f, bgmVolume = 0.5f };
+            userSetting = new UserSetting() { effectVolume = 5, systemVolume = 5, masterVolume = 5, bgmVolume = 5 };
     }
 
     private bool TryReadJson<T>(out T data)
