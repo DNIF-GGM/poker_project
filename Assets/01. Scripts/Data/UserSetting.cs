@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 [System.Serializable]
 public class UserSetting
 {
-    [JsonProperty("effectVolume")] public float effectVolume;
-    [JsonProperty("systemVolume")] public float systemVolume;
-    [JsonProperty("bgmVolume")] public float bgmVolume;
-    [JsonProperty("masterVolume")] public float masterVolume;
+    [JsonProperty("effectVolume")] public int effectVolume;
+    [JsonProperty("systemVolume")] public int systemVolume;
+    [JsonProperty("bgmVolume")] public int bgmVolume;
+    [JsonProperty("masterVolume")] public int masterVolume;
 }

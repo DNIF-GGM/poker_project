@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +12,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null) { Debug.LogWarning("Multiple AudioManager Instance is Running, Destroy This"); Destroy(gameObject); return; }
+        else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+
         foreach(AudioClip ac in clipList)
         {
             if(clips.ContainsKey(ac.name))
@@ -34,7 +35,7 @@ public class AudioManager : MonoBehaviour
         player.clip = null;
         player.clip = clips[clipName];
 
-        player.volume = DataManager.Instance.userSetting.effectVolume * DataManager.Instance.userSetting.masterVolume;
+        player.volume = (float)(DataManager.Instance.userSetting.effectVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 
     public void PlaySystemAudio(string clipName)
@@ -42,7 +43,7 @@ public class AudioManager : MonoBehaviour
         systemAudioPlayer.clip = null;
         systemAudioPlayer.clip = clips[clipName];
 
-        systemAudioPlayer.volume = DataManager.Instance.userSetting.systemVolume * DataManager.Instance.userSetting.masterVolume;
+        systemAudioPlayer.volume = (float)(DataManager.Instance.userSetting.systemVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 
     public void PlayBGMAudio(string clipName)
@@ -50,6 +51,6 @@ public class AudioManager : MonoBehaviour
         bgmAudioPlayer.clip = null;
         bgmAudioPlayer.clip = clips[clipName];
 
-        bgmAudioPlayer.volume = DataManager.Instance.userSetting.bgmVolume * DataManager.Instance.userSetting.masterVolume;
+        bgmAudioPlayer.volume = (float)(DataManager.Instance.userSetting.bgmVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 }
