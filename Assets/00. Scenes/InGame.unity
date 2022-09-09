@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,7 +346,7 @@ RectTransform:
   m_Children:
   - {fileID: 1013998769}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2152,7 +2152,7 @@ RectTransform:
   - {fileID: 1528613939}
   - {fileID: 228898370}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4090,7 +4090,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1718395267
 GameObject:
@@ -4125,7 +4125,7 @@ Transform:
   m_Children:
   - {fileID: 1855141851}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1718395275
 MonoBehaviour:
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b016ae5fc0c1022498bf4f8b9659e831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardSOs:
+  _cardSo:
   - {fileID: 11400000, guid: ba03cf2e923754b498a2ac3309ca0abe, type: 2}
   - {fileID: 11400000, guid: 791737a4617a26a4da9b583eb8512f29, type: 2}
   - {fileID: 11400000, guid: e87b9aee409e67e41b6bcdc3b3d245b9, type: 2}
@@ -4222,6 +4222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 300
+  <Stages>k__BackingField: []
 --- !u!1 &1781889479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +4606,7 @@ RectTransform:
   - {fileID: 1178877222234652612}
   - {fileID: 5991486944912707830}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
