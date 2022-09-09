@@ -7,7 +7,7 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance = null;
 
-    [SerializeField] private List<CardSO> _cardSOs = new List<CardSO>();
+    [SerializeField] private List<CardSO> _cardSo = new List<CardSO>();
 
     [field: SerializeField] //수정 후
     public List<CardGenealogy> Genealogies { get; private set; } = new List<CardGenealogy>();
@@ -23,6 +23,9 @@ public class CardManager : MonoBehaviour
     public List<CardSlot> CardSlots { get => _cardSlots; set => _cardSlots = value; }
 
     private Transform _cardParentTrm;
+
+    private bool _isSet = false;
+    public bool IsSet {get => _isSet;}
 
     private void Awake()
     {
@@ -62,7 +65,7 @@ public class CardManager : MonoBehaviour
             CardUI cardUi = PoolManager.Instance.Pop("Card(UI)") as CardUI;
             cardUi.transform.SetParent(_cardParentTrm);
             cardUi.transform.localScale = new Vector3(0.7f, 1, 1);
-            cardUi.InitSetting(_cardSOs[Random.Range(0, 53)]);
+            cardUi.InitSetting(_cardSo[Random.Range(0, 53)]);
         }
     }
 
@@ -72,5 +75,6 @@ public class CardManager : MonoBehaviour
         {
             c.CheckSlot();
         }
+        _isSet = true;
     }
 }

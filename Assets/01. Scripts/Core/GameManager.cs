@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<PoolableMono> _poolingList;
 
+    private bool _gameOver = false;
+    public bool GameOver { get => _gameOver; set => _gameOver = value; }
+
     private void Awake() {
         if(Instance == null) Instance = this;
         // if(Instance != null) { Debug.LogWarning("Multiple GameManager Instance is Running, Destroy This"); Destroy(gameObject); return; }
@@ -22,5 +25,6 @@ public class GameManager : MonoBehaviour
         SlotManager.Instance = gameObject.AddComponent<SlotManager>();
         CardManager.Instance = gameObject.GetComponent<CardManager>();
         StageManager.Instance = gameObject.GetComponent<StageManager>();
+        CoinManager.Instance = gameObject.AddComponent<CoinManager>();
     }
 }
