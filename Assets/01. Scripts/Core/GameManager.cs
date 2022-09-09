@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,6 @@ public class GameManager : MonoBehaviour
 
         CardManager.Instance = gameObject.GetComponent<CardManager>();
         SlotManager.Instance = gameObject.AddComponent<SlotManager>();
-        CardSpawnManager.Instance = gameObject.GetComponent<CardSpawnManager>();
+        StageManager.Instance = gameObject.GetComponent<StageManager>();
     }
 }
