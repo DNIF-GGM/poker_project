@@ -1,64 +1,40 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class PoolManager
 {
     public static PoolManager Instance = null;
 
-    [SerializeField] List<PoolableMono> poolingList = new List<PoolableMono>();
-    public Dictionary<string, Pool<PoolableMono>> Pools { get; private set; }= new Dictionary<string, Pool<PoolableMono>>();
-    private Transform parent = null;
+    private Dictionary<string, Pool<PoolableMono>> _pools = new Dictionary<string, Pool<PoolableMono>>();
 
-    private void Awake()
+    private Transform _trmParent;
+
+    public PoolManager(Transform trmParent)
     {
-        if(Instance != null) { Debug.LogWarning("Multple " + this.GetType() + " Instance is Running, Destroy This"); Destroy(gameObject); }
-        else { Instance = this; }
-
-        parent = transform.GetChild(0);
-        foreach(PoolableMono p in poolingList)
-            CreatePool(p, parent);
+        _trmParent = trmParent;
     }
 
-    public void CreatePool(PoolableMono _prefab, Transform _parent)
+    public void CreatePool(PoolableMono prefab, int cnt = 10)
     {
-        Pool<PoolableMono> pool = new Pool<PoolableMono>(_prefab, _parent);
-        
-        if(Pools.ContainsKey(_prefab.name))
-        {
-            Debug.LogWarning($"{_prefab.name} | Same Name of Poolable Object Already Existed at Pools, Returning");
-            return;
-        }
-
-        Pools.Add(_prefab.name, pool);
+        Pool<PoolableMono> pool = new Pool<PoolableMono>(prefab, _trmParent, cnt);
+        _pools.Add(prefab.gameObject.name, pool);
     }
 
-    public PoolableMono Pop(string _prefabName)
+    public PoolableMono Pop(string prefabName)
     {
-        PoolableMono obj = null;
-
-        if(!Pools.ContainsKey(_prefabName))
+        if(_pools.ContainsKey(prefabName) == false)
         {
-            Debug.LogWarning($"{_prefabName} | Current Name of Poolable Object Doesn't Exist at Pools, Returning Nulll");
+            Debug.LogError("Prefab doesnt exist on PoolList");
             return null;
         }
 
-        obj = Pools[_prefabName].Pop();
-        obj.transform.SetParent(null);
-        obj.Reset();
-        
-        return obj;
+        PoolableMono item = _pools[prefabName].Pop();
+        return item;
     }
 
-    public void Push(PoolableMono _obj)
+    public void Push(PoolableMono prefab)
     {
-        if(!Pools.ContainsKey(_obj.name))
-        {
-            Debug.LogWarning($"{_obj.name} | Current Name of Pool Doesn't Exist at Pools, Destroy Object");
-            Destroy(_obj.gameObject);
-            return;
-        }
-
-        _obj.transform.SetParent(parent);
-        Pools[_obj.name].Push(_obj);
+        _pools[prefab.name].Push(prefab);
     }
 }
