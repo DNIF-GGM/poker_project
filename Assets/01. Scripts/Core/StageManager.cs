@@ -9,18 +9,23 @@ public class StageManager : MonoBehaviour
     [SerializeField] private float timeLimit = 300f;
     public bool OnFight { get; private set; }= false;
     private float elapsedTime = 0;
-    private int currentStageIndex = 1;
-    //private Stage currentStage = null;
+    private int currentStageIndex = 0;
+    private Theme currentTheme = null;
+
+    [field: SerializeField]
+    public List<Stage> Stages { get; set; } = new List<Stage>();
 
     //스테이지 시작
     public void StartStage()
     {
+        Debug.Log("시작");
         OnFight = true;
 
         //전투대기 패널 끄기
 
         CardManager.Instance.ClearCard();
         CardManager.Instance.SpawnUnit();
+        LoadStage(currentStageIndex);
     }
 
     private void Update()
@@ -38,7 +43,8 @@ public class StageManager : MonoBehaviour
     //적이 죽는 메소드에서 남은 적 개수 비교하여 실행 => isLose = false;
     public void StageOver(bool isLose)
     {
-        UnloadStage();
+        OnFight = false;
+        
         elapsedTime = 0f;
 
         if(isLose) //졌을 때
@@ -52,15 +58,28 @@ public class StageManager : MonoBehaviour
             CoinManager.Instance.UpdateCoin(coinIncreasePercent);
             //승리 알림 패널 띄우기
         }
-    }
 
-    public void UnloadStage()
-    {
-        //PoolManager.Instance.Push(currnetStage);
+        currentStageIndex++;
     }
 
     public void LoadStage(int stageIndex)
     {
-        PoolManager.Instance.Pop("Stage" + stageIndex);
+        if(Stages.Count - 1 < stageIndex) return;
+
+        if(stageIndex % 10 == 0){  //10스테이지 마다 새로운 테마 생성
+            if(currentTheme != null) PoolManager.Instance.Push(currentTheme);
+            Theme theme = PoolManager.Instance.Pop(Stages[stageIndex].themeBackGound.name) as Theme;
+            currentTheme = theme;
+        }
+        
+        for(int i = 0; i < Stages[stageIndex].stageMonster.Count; i++){
+            //Monster monster = PoolManager.Instance.Pop(Stages[stageIndex].stageMonster[i].name) as Monster;
+            //monster.transform.position = ;
+            //monster.transform.rotation = ;
+
+            Debug.Log($"{i} 번 째 몬스터");
+        }
+
+        Debug.Log($"{stageIndex} 번 스테이지 생성");
     }
 }
