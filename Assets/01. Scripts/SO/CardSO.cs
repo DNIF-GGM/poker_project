@@ -6,6 +6,6 @@ using UnityEngine;
 public class CardSO : ScriptableObject
 {
     public CardEnum cardEnum;
-    public Sprite sprite;
+    public Material mat;
     public float cost;
 }

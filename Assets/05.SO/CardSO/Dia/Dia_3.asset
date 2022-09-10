@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dia_3
   m_EditorClassIdentifier: 
   cardEnum: 28
-  sprite: {fileID: 0}
+  mat: {fileID: 2100000, guid: e5dc8e7057d354ca783c9e1e0c85c584, type: 2}
   cost: 0
