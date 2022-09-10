@@ -25,6 +25,7 @@ public class CardSlot : MonoBehaviour
 
         Card card = PoolManager.Instance.Pop("Card") as Card;
         card.GetComponent<RectTransform>().localScale = new Vector3(30, 30, 30);
+        card.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
         
         Vector3 spawnPos = transform.position;
         spawnPos.x += (-maxCardCount / 2 + transform.childCount) * cardSpawnFactor.x;
@@ -34,11 +35,13 @@ public class CardSlot : MonoBehaviour
         card.Init(spawnPos, this.transform);
         card.CardStatusSet(SlotManager.Instance.currentSelectedCard.cardSO);
 
+        //카드를 슬롯에서 슬롯으로 옮길때 리스트에서 삭제되게 해야함
         _cardSlot.Add(SlotManager.Instance.currentSelectedCard.cardEnum); //드래그 앤 드롭시 해당 카드의 상태를 매개변수로 등록하여 리스트 추가
 
-        SlotManager.Instance.ResetSelectedCard();
-
         Cursor.visible = true;
+        card.isOnSlot = true;
+        SlotManager.Instance.isDrag = false;
+        SlotManager.Instance.ResetSelectedCard();
     }
 
     public void ClearSlot()

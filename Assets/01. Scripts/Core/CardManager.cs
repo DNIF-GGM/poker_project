@@ -63,6 +63,7 @@ public class CardManager : MonoBehaviour
             rect.SetParent(_cardParentTrm);
             rect.anchoredPosition3D = new Vector3(rect.anchoredPosition3D.x, rect.anchoredPosition.y, 0);
             rect.localRotation = Quaternion.Euler(0, 0, 180);
+            rect.localScale = new Vector3(100, 100, 100);
             
             card.CardStatusSet(_cardSo[Random.Range(0, 53)]);
         }
