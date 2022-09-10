@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Spade_King
   m_EditorClassIdentifier: 
   cardEnum: 12
-  sprite: {fileID: 0}
+  mat: {fileID: 2100000, guid: 3910cd10756064fcbbee24eae35c945d, type: 2}
   cost: 0

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Joker
   m_EditorClassIdentifier: 
   cardEnum: 52
-  sprite: {fileID: 0}
+  mat: {fileID: 2100002, guid: ab9e24e14f0b1400aa074527c8c3b4ee, type: 3}
   cost: 0
