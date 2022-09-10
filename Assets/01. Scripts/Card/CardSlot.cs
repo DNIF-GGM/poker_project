@@ -23,23 +23,32 @@ public class CardSlot : MonoBehaviour
 
         if(transform.childCount - 1 >= maxCardCount) return;
 
-        _cardSlot.Add(SlotManager.Instance.currentSelectedCard.CardEnum); //드래그 앤 드롭시 해당 카드의 상태를 매개변수로 등록하여 리스트 추가
         Card card = PoolManager.Instance.Pop("Card") as Card;
+        card.GetComponent<RectTransform>().localScale = new Vector3(30, 30, 30);
         
         Vector3 spawnPos = transform.position;
         spawnPos.x += (-maxCardCount / 2 + transform.childCount) * cardSpawnFactor.x;
         spawnPos.y += cardSpawnFactor.y;
         spawnPos.z += cardSpawnFactor.z;
+        
         card.Init(spawnPos, this.transform);
+        card.CardStatusSet(SlotManager.Instance.currentSelectedCard.cardSO);
+
+        _cardSlot.Add(SlotManager.Instance.currentSelectedCard.cardEnum); //드래그 앤 드롭시 해당 카드의 상태를 매개변수로 등록하여 리스트 추가
 
         SlotManager.Instance.ResetSelectedCard();
+
+        Cursor.visible = true;
     }
 
     public void ClearSlot()
     {
-        for(int i = 0; i < transform.childCount; i ++) //카드들 모두 없애기
-        {
-            Card card = transform.GetChild(i).GetComponent<Card>();
+        //원래 방식대로 하면 transform.childCount는 for문이 진행됨에 따라 바뀌는 값이기에 재대로 for문이 수행되지 않음
+        //for(int i = 0; i < transform.childCount; i ++) //카드들 모두 없애기
+        //{
+        int childCount = transform.childCount;
+        for(int i = 0; i < childCount; i++){
+            Card card = transform.GetChild(0).GetComponent<Card>();
             PoolManager.Instance.Push(card);
         }
 
@@ -51,7 +60,6 @@ public class CardSlot : MonoBehaviour
 
         _cardSlot.Sort();
 
-        #region 수정 후 로직
         foreach(CardGenealogy g in CardManager.Instance.Genealogies)
         {
             if(g.combi.SequenceEqual(_cardSlot)) {
@@ -63,22 +71,5 @@ public class CardSlot : MonoBehaviour
         }
 
         ClearSlot();
-        #endregion
-
-        #region 수정 전 로직 (이렇게 하면 메모리 아야할 거 같아서 위 로직으로 바꿈 확인 부탁)
-        // foreach(List<CardEnum> i in CardManager.Instance.HandRanking.Values){
-        //     string genealogy;
-        //     i.Sort();
-        //     if(i.SequenceEqual(_cardSlot)){
-        //         genealogy = CardManager.Instance.HandRanking.FirstOrDefault(x => x.Value == i).Key;
-        //         //PoolManager.Instance.Pop(genealogy);
-        //         Debug.Log(genealogy);
-        //     }
-        //     // else{
-        //     //     Debug.Log("어캐 돌아가지..?");    <- 없어도 될 듯 그냥 위에서 모든 카드들 다 날려버림
-        //     // }
-        //     _cardSlot.Clear();
-        // }
-        #endregion
     }
 }

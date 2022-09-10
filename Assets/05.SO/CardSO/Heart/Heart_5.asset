@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Heart_5
   m_EditorClassIdentifier: 
   cardEnum: 17
-  sprite: {fileID: 0}
+  mat: {fileID: 2100000, guid: 1ed319b78737e4d8c8407899e443e97b, type: 2}
   cost: 0

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Club_King
   m_EditorClassIdentifier: 
   cardEnum: 51
-  sprite: {fileID: 0}
+  mat: {fileID: 2100000, guid: 4cf87d08fb1a34646a83e461142a3070, type: 2}
   cost: 0

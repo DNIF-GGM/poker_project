@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Card", menuName = "SO/CardInfo")]
 public class CardSO : ScriptableObject
 {
     public CardEnum cardEnum;
-    public Sprite sprite;
+    public Material mat;
     public float cost;
 }
