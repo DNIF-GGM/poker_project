@@ -30,7 +30,7 @@ public class Card : PoolableMono {
     private void OnMouseEnter() {
         Vector3 scale = GetComponent<RectTransform>().localScale;
 
-        if(!SlotManager.Instance.isDrag) GetComponent<RectTransform>().DOScale(isOnSlot ? 50 : 110, 0.5f);
+        if(!SlotManager.Instance.isDrag) GetComponent<RectTransform>().DOScale(isOnSlot ? 55 : 120, 0.5f);
     }
     private void OnMouseExit() {
         Vector3 scale = GetComponent<RectTransform>().localScale;
