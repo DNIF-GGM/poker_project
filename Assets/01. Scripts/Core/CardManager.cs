@@ -55,6 +55,10 @@ public class CardManager : MonoBehaviour
         foreach(CardSlot cs in _cardSlots)
             cs.ClearSlot();
 
+        StartCoroutine(CardSpawnCoroutine());
+    }
+
+    IEnumerator CardSpawnCoroutine(){
         for(int i = 0; i < 13; i++){
             RectTransform rect;
 
@@ -66,6 +70,8 @@ public class CardManager : MonoBehaviour
             rect.localScale = new Vector3(100, 100, 100);
             
             card.CardStatusSet(_cardSo[Random.Range(0, 53)]);
+
+            yield return new WaitForSecondsRealtime(0.05f);
         }
     }
 
