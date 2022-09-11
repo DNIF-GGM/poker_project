@@ -20,6 +20,8 @@ public class CardManager : MonoBehaviour
     private bool _isSet = false;
     public bool IsSet {get => _isSet;}
 
+    private bool isReroll = false;
+
     private void Awake()
     {
         _cardParentTrm = GameObject.Find("CardCanvas").transform;
@@ -50,11 +52,18 @@ public class CardManager : MonoBehaviour
     }
 
     public void CardSpawn(){
+        if(isReroll) return;
+
         ClearCard();
 
         foreach(CardSlot cs in _cardSlots)
             cs.ClearSlot();
 
+        StartCoroutine(CardSpawnCoroutine());
+    }
+
+    IEnumerator CardSpawnCoroutine(){
+        isReroll = true;
         for(int i = 0; i < 13; i++){
             RectTransform rect;
 
@@ -63,9 +72,13 @@ public class CardManager : MonoBehaviour
             rect.SetParent(_cardParentTrm);
             rect.anchoredPosition3D = new Vector3(rect.anchoredPosition3D.x, rect.anchoredPosition.y, 0);
             rect.localRotation = Quaternion.Euler(0, 0, 180);
+            rect.localScale = new Vector3(100, 100, 100);
             
             card.CardStatusSet(_cardSo[Random.Range(0, 53)]);
+
+            yield return new WaitForSecondsRealtime(0.02f);
         }
+        isReroll = false;
     }
 
     public void SpawnUnit()

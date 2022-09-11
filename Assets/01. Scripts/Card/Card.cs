@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Card : PoolableMono {
     
@@ -8,6 +9,8 @@ public class Card : PoolableMono {
     public Material cardMat {get => _cardMat;}
 
     public CardSO cardSO {get; private set;}
+
+    public bool isOnSlot {get; set;} = false;
 
     public void CardStatusSet(CardSO cardSO){
         this.cardSO = cardSO;
@@ -24,8 +27,18 @@ public class Card : PoolableMono {
         transform.SetParent(parent);
     }
 
+    private void OnMouseEnter() {
+        Vector3 scale = GetComponent<RectTransform>().localScale;
+
+        if(!SlotManager.Instance.isDrag) GetComponent<RectTransform>().DOScale(isOnSlot ? 55 : 120, 0.5f);
+    }
+    private void OnMouseExit() {
+        Vector3 scale = GetComponent<RectTransform>().localScale;
+
+        if(!SlotManager.Instance.isDrag) GetComponent<RectTransform>().DOScale(isOnSlot ? 30 : 100, 0.5f);
+    }
+
     public override void Reset()
     {
-        
     }
 }

@@ -5,15 +5,18 @@ public class SlotManager : MonoBehaviour
     public static SlotManager Instance = null;
     public Card currentSelectedCard = null;
 
+    public bool isDrag {get; set;} = false;
+
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
             if(currentSelectedCard == null){
                 RaycastHit hit = CastRay();
 
                 if(hit.collider != null){
-                    if(!hit.collider.CompareTag("Card")) return;
+                    if(!hit.collider.CompareTag("Card") || isDrag) return;
 
                     currentSelectedCard = hit.collider.GetComponent<Card>();
+                    isDrag = true;
                     Cursor.visible = false;
                 }
             }
@@ -23,16 +26,7 @@ public class SlotManager : MonoBehaviour
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(currentSelectedCard.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-            currentSelectedCard.transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
-        }
-        else{
-            RaycastHit hit = CastRay();
-
-            if(hit.collider != null){
-                if(!hit.collider.CompareTag("Card")) return;
-
-                //hit.collider.GetComponent<RectTransform>().
-            }
+            currentSelectedCard.transform.position = new Vector3(worldPosition.x, 2, worldPosition.z);
         }
     }
 
@@ -50,7 +44,7 @@ public class SlotManager : MonoBehaviour
 
     public void ResetSelectedCard()
     {
-        currentSelectedCard.gameObject.SetActive(false);
+        PoolManager.Instance.Push(currentSelectedCard);
         currentSelectedCard = null;
     }
 }
