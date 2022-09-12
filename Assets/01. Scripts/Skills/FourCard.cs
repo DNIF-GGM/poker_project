@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class FourCard : UnitBase
 {
+    [SerializeField] float stunDuration = 3f;
+
     public override void SkillAttack()
     {
         base.SkillAttack();
 
-        SetTarget(out Transform targetTrm, false);
+        SetTarget(out Transform targetTrm, enemy, false);
         UnitBase targetUnit = targetTrm.GetComponent<UnitBase>();
     
         targetUnit._curState |= AgentState.Stun;
 
-        StartCoroutine(StunCoroutine(1f, targetUnit));
+        StartCoroutine(StunCoroutine(stunDuration, targetUnit));
     }
 
     private IEnumerator StunCoroutine(float duration, UnitBase target)
