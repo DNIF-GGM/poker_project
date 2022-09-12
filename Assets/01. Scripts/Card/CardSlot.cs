@@ -8,6 +8,7 @@ using UnityEngine;
 public class CardSlot : MonoBehaviour
 {
     [SerializeField] private List<CardEnum> _cardSlot = new List<CardEnum>();
+    public List<CardEnum> _CardSlot => _cardSlot;
     [SerializeField] private Vector3 cardSpawnFactor = new Vector3();
     [SerializeField] private Vector3 unitSpawnPos = new Vector3();
     [SerializeField] private int maxCardCount = 5;
@@ -40,6 +41,7 @@ public class CardSlot : MonoBehaviour
 
         Cursor.visible = true;
         card.isOnSlot = true;
+        card.Slot = this;
         SlotManager.Instance.isDrag = false;
         SlotManager.Instance.ResetSelectedCard();
     }
