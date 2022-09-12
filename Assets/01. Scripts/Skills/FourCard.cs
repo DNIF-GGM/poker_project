@@ -11,6 +11,8 @@ public class FourCard : UnitBase
 
         SetTarget(out Transform targetTrm, enemy, false);
         UnitBase targetUnit = targetTrm.GetComponent<UnitBase>();
+
+        if(targetUnit._curState.HasFlag(AgentState.Stun)) return;
     
         targetUnit._curState |= AgentState.Stun;
 

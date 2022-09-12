@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class RoyalStraightFlush : UnitBase
 {
-    [SerializeField] float firstDuration = 3f, stunDuration = 5f, fixedDamage = 5f;
+    [SerializeField] private float firstDuration = 3f, stunDuration = 5f, fixedDamage = 5f;
 
     public override void SkillAttack()
     {
         base.SkillAttack();
 
-        StartCoroutine(SkillCroutine(firstDuration));        
+        StartCoroutine(SkillCroutine(firstDuration));
     }
 
     private IEnumerator SkillCroutine(float firstDuration)
     {
         yield return new WaitForSeconds(firstDuration);
 
-        UnitBase[] units = GameObject.Find("Pool").GetComponentsInChildren<UnitBase>();
+        UnitBase[] units = GameObject.Find("Test").GetComponentsInChildren<UnitBase>();
 
         foreach(UnitBase u in units)
             if(u.CompareTag("Enemy"))

@@ -10,6 +10,9 @@ public class Triple : UnitBase
 
         SetTarget(out Transform target, unitLayer);
 
-        target.GetComponent<UnitBase>()._unitHp += 3f;
+        UnitBase targetUnit = target.GetComponent<UnitBase>();
+        
+        targetUnit._unitHp += 3;
+        targetUnit._unitHp = Mathf.Min(targetUnit._data._hp, _unitHp);
     }
 }
