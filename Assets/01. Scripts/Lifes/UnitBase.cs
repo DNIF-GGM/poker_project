@@ -172,6 +172,6 @@ public class UnitBase : PoolableMono
             timer += Time.deltaTime;
     }
     public void DownAtk(float value){
-        _data._power *= value;
+        _Data._power *= value;
     }
 }
