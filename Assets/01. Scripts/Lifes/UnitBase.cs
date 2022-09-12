@@ -11,6 +11,7 @@ public class UnitBase : PoolableMono
     private AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
     private Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
+    NavMeshAgent nav;
     private float _unitHp = 0f; //현재 체력
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
 
@@ -25,7 +26,7 @@ public class UnitBase : PoolableMono
         }
     } 
     public virtual void Chase(){
-        //현웅아 너가해 ^^7
+        nav.SetDestination(_target.position);
     }
     public virtual void BasicAttack(){
         _anim.SetTrigger("IsAttack");
@@ -76,7 +77,7 @@ public class UnitBase : PoolableMono
         AgentState returnState = AgentState.Idle; //default 값 Idle 세팅
 
         if(_target == null) //타겟이 없으면 타겟 재지정
-            SetTarget(out _target);
+            SetTarget(out _target, LayerMask.NameToLayer("Enemy"));
 
         if (CheckDistance(_data._attackDistance, transform.position, _target.position)) //타겟하고 시전 위치하고 거리 계산
             returnState = AgentState.Attack; //사정거리 안이면 Attack
@@ -124,9 +125,9 @@ public class UnitBase : PoolableMono
         }
     }
 
-    private void SetTarget(out Transform target, bool getShorter = true)
+    protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, enemy); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
+        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
         Transform targetTrm = null;
 
         if(cols.Length <= 0)
