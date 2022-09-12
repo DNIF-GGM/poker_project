@@ -76,7 +76,7 @@ public class UnitBase : PoolableMono
         AgentState returnState = AgentState.Idle; //default 값 Idle 세팅
 
         if(_target == null) //타겟이 없으면 타겟 재지정
-            SetTarget(out _target);
+            SetTarget(out _target, enemy);
 
         if (CheckDistance(_data._attackDistance, transform.position, _target.position)) //타겟하고 시전 위치하고 거리 계산
             returnState = AgentState.Attack; //사정거리 안이면 Attack
@@ -124,9 +124,9 @@ public class UnitBase : PoolableMono
         }
     }
 
-    private void SetTarget(out Transform target, bool getShorter = true)
+    protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, enemy); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
+        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
         Transform targetTrm = null;
 
         if(cols.Length <= 0)
@@ -168,5 +168,8 @@ public class UnitBase : PoolableMono
     {
         while(timer <= targetTime) //타이머가 이미 쿨타임을 넘겼는데도 무지성으로 증가하는 거 방지하기 위한 while문
             timer += Time.deltaTime;
+    }
+    public void DownAtk(float value){
+        _data._power *= value;
     }
 }
