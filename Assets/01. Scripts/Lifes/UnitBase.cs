@@ -12,6 +12,7 @@ public class UnitBase : PoolableMono
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
     private Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
     public float _unitHp = 0f; //현재 체력
+    NavMeshAgent nav;
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
 
     protected LayerMask enemy = 1 << 3; //레이어 마스크는 디폴트 값이기 때문에 직렬화 안 시키고 상수 박았음
@@ -25,7 +26,7 @@ public class UnitBase : PoolableMono
         }
     } 
     public virtual void Chase(){
-        //현웅아 너가해 ^^7
+        nav.SetDestination(_target.position);
     }
     public virtual void BasicAttack(){
         _anim.SetTrigger("IsAttack");

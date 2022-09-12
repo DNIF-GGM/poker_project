@@ -36,6 +36,9 @@ public abstract class Agent : MonoBehaviour
                 case State.Chase:
                     Chase();
                     break;
+                case State.Stun:
+                    Stun();
+                    break;
                 case State.Attack:
                     Attack();
                     break;
@@ -47,6 +50,7 @@ public abstract class Agent : MonoBehaviour
 
     protected abstract void AnyState();
     protected abstract void Chase();
+    protected abstract void Stun();
     protected abstract void Attack();
     protected abstract void Die();
 
@@ -54,6 +58,7 @@ public abstract class Agent : MonoBehaviour
     {
         Chase,
         Attack,
+        Stun,
         Die,
     }
 
