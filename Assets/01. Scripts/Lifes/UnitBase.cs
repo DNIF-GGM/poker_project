@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class UnitBase : PoolableMono
 {
-    [SerializeField] protected AgnetDataSO _data; //SO
+    public AgnetDataSO _data; //SO
     
     private Animator _anim;
     public AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
