@@ -59,6 +59,7 @@ public class StageManager : MonoBehaviour
             //승리 알림 패널 띄우기
         }
 
+        CardManager.Instance.CardSpawn();
         currentStageIndex++;
     }
 
