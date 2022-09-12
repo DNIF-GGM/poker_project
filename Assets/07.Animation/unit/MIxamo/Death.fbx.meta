@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: c6529965bf3371442bdf686c756dc6aa
+guid: edb7ad9c74c8b9942895a5f93b5aed6f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Idle
+    second: Death
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,7 +22,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'Ball_L'
-      : rotation error = 1.721777 deg\n"
+      : rotation error = 3.763826 deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -42,11 +42,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Death
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

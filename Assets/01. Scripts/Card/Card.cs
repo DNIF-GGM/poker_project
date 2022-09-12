@@ -13,6 +13,10 @@ public class Card : PoolableMono {
 
     public bool isOnSlot {get; set;} = false;
 
+    private void OnEnable() {
+        isOnSlot = false;
+    }
+
     public void CardStatusSet(CardSO cardSO){
         this.cardSO = cardSO;
 

@@ -53,7 +53,7 @@ public class UnitBase : PoolableMono
         StartCoroutine(Cycle()); //Cycle 코루틴 실행
     }
 
-    public void Awake()
+    protected virtual void Awake()
     {
         Reset();
         //_agent = GetComponent<NavMeshAgent>();   
@@ -93,7 +93,6 @@ public class UnitBase : PoolableMono
             if(!_curState.HasFlag(AgentState.Stun))
             {
                 _curState = GetState(); //타겟이 없으면 타겟 지정 후 적이 사정거리 안에 있을 때 Attack 반환 사정거리 밖에 있을 떄 Chase 반환
-
                 switch (_curState)
                 {
                     case AgentState.Chase:
