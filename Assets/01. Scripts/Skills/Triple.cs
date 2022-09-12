@@ -12,7 +12,7 @@ public class Triple : UnitBase
 
         UnitBase targetUnit = target.GetComponent<UnitBase>();
         
-        targetUnit._unitHp += 3;
-        targetUnit._unitHp = Mathf.Min(targetUnit._data._hp, _unitHp);
+        targetUnit._UnitHp += 3;
+        targetUnit._UnitHp = Mathf.Min(targetUnit._Data._hp, _UnitHp);
     }
 }

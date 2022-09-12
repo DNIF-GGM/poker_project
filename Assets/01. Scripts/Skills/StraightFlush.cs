@@ -8,7 +8,7 @@ public class  StraightFlush : UnitBase
     [SerializeField] private AnimationClip _attackClip;
 
     protected override void Awake() {
-        _attackController.animationClips[0] = _attackClip;
+        //_attackController.animationClips[0] = _attackClip;
 
         base.Awake();
     }

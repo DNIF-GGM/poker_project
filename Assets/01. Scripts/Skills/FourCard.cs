@@ -12,9 +12,9 @@ public class FourCard : UnitBase
         SetTarget(out Transform targetTrm, enemy, false);
         UnitBase targetUnit = targetTrm.GetComponent<UnitBase>();
 
-        if(targetUnit._curState.HasFlag(AgentState.Stun)) return;
+        if(targetUnit._CurState.HasFlag(AgentState.Stun)) return;
     
-        targetUnit._curState |= AgentState.Stun;
+        targetUnit._CurState |= AgentState.Stun;
 
         StartCoroutine(StunCoroutine(stunDuration, targetUnit));
     }
@@ -22,6 +22,6 @@ public class FourCard : UnitBase
     private IEnumerator StunCoroutine(float duration, UnitBase target)
     {
         yield return new WaitForSeconds(duration);
-        target._curState &= ~AgentState.Stun;
+        target._CurState &= ~AgentState.Stun;
     }
 }
