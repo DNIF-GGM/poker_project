@@ -8,7 +8,7 @@ public class UnitBase : PoolableMono
     [SerializeField] protected AgnetDataSO _data; //SO
     
     private Animator _anim;
-    private AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
+    public AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
     private Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
     private float _unitHp = 0f; //현재 체력
@@ -93,7 +93,7 @@ public class UnitBase : PoolableMono
             if(!_curState.HasFlag(AgentState.Stun))
             {
                 _curState = GetState(); //타겟이 없으면 타겟 지정 후 적이 사정거리 안에 있을 때 Attack 반환 사정거리 밖에 있을 떄 Chase 반환
-                yield break;
+
                 switch (_curState)
                 {
                     case AgentState.Chase:
@@ -124,7 +124,7 @@ public class UnitBase : PoolableMono
         }
     }
 
-    private void SetTarget(out Transform target, bool getShorter = true)
+    protected void SetTarget(out Transform target, bool getShorter = true)
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, enemy); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
         Transform targetTrm = null;
