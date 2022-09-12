@@ -10,11 +10,11 @@ public class UnitBase : PoolableMono
     private Animator _anim;
     private AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
-    private Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
+    protected Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
     private float _unitHp = 0f; //현재 체력
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
 
-    [SerializeField] private LayerMask enemy; //레이어 마스크는 디폴트 값이기 때문에 직렬화 안 시키고 상수 박았음
+    [SerializeField] protected LayerMask enemy; //레이어 마스크는 디폴트 값이기 때문에 직렬화 안 시키고 상수 박았음
 
     public virtual void SkillAttack(){
         _anim.SetTrigger("IsAttack");
@@ -76,7 +76,7 @@ public class UnitBase : PoolableMono
         AgentState returnState = AgentState.Idle; //default 값 Idle 세팅
 
         if(_target == null) //타겟이 없으면 타겟 재지정
-            SetTarget(out _target);
+            SetTarget(out _target, enemy);
 
         if (CheckDistance(_data._attackDistance, transform.position, _target.position)) //타겟하고 시전 위치하고 거리 계산
             returnState = AgentState.Attack; //사정거리 안이면 Attack
@@ -93,7 +93,6 @@ public class UnitBase : PoolableMono
             if(!_curState.HasFlag(AgentState.Stun))
             {
                 _curState = GetState(); //타겟이 없으면 타겟 지정 후 적이 사정거리 안에 있을 때 Attack 반환 사정거리 밖에 있을 떄 Chase 반환
-                yield break;
                 switch (_curState)
                 {
                     case AgentState.Chase:
@@ -124,9 +123,9 @@ public class UnitBase : PoolableMono
         }
     }
 
-    private void SetTarget(out Transform target, bool getShorter = true)
+    protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, enemy); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
+        Collider[] cols = Physics.OverlapSphere(transform.position, _data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
         Transform targetTrm = null;
 
         if(cols.Length <= 0)
