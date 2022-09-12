@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Agent/AgnetData")]
 public class AgnetDataSO : ScriptableObject {
-    public int _hp;
-    public float _cycleTime;
-    public float _distance;
-    public float _attackDistance;
-    public float _speed;
-    public float _delay;
-    public float _power;
+    public int _hp; //체력
+    public float _cycleTime; //사이클 주기 (평타 주기)
+    public float _distance; //삭제예정
+    public float _attackDistance; //공격 거리
+    public float _speed; //속도
+    public float _delay; //스킬 딜레이
+    public float _power; //공격력
 }
