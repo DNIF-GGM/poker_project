@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RoyalStraightFlush : UnitBase
 {
-    [SerializeField] float firstDuration = 3f, stunDuration = 5f;
+    [SerializeField] float firstDuration = 3f, stunDuration = 5f, fixedDamage = 5f;
 
     public override void SkillAttack()
     {
@@ -21,7 +21,7 @@ public class RoyalStraightFlush : UnitBase
         foreach(UnitBase u in units)
             if(u.CompareTag("Enemy"))
             {
-                u.Hit(u._data._hp / 2 + 5f);
+                u.Hit(u._data._hp / 2 + fixedDamage);
                 StartCoroutine(StunCoroutine(stunDuration, u));
             }
     }
