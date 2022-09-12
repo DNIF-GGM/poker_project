@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Flush : UnitBase
 {
+    [SerializeField] private AnimationClip _attackClip;
+
+    protected override void Awake() {
+        _attackController.animationClips[0] = _attackClip;
+
+        base.Awake();
+    }
+
     public override void SkillAttack()
     {
         Collider[] colliders = Physics.OverlapSphere(_target.position, 2.5f, enemy);

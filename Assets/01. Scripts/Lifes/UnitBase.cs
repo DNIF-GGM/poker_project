@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class UnitBase : PoolableMono
 {
     [SerializeField] protected AgnetDataSO _data; //SO
+    [SerializeField] protected AnimatorOverrideController _attackController;
     
     private Animator _anim;
     private AgentState _curState; //현재 상태 (Flag 달아놓음 Flag 연산으로)
@@ -53,7 +54,7 @@ public class UnitBase : PoolableMono
         StartCoroutine(Cycle()); //Cycle 코루틴 실행
     }
 
-    public void Awake()
+    protected virtual void Awake()
     {
         Reset();
         //_agent = GetComponent<NavMeshAgent>();   
