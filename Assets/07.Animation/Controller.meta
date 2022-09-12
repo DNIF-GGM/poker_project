@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/07.Animation/Controller.meta
 guid: 9818fa94a985dae45ac4bc023341e198
 folderAsset: yes
+========
+guid: 8154491f04b0f2744abf642266d487eb
+>>>>>>>> Minsu:Assets/00. Scenes/Minsu.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
