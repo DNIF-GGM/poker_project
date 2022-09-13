@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine.AI;  
 using UnityEngine;
-using UnityEngine.Events;
 
 public class UnitBase : PoolableMono
 {
+    [field : SerializeField]
     public AgnetDataSO _Data { get; private set; } //SO
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
@@ -76,7 +76,7 @@ public class UnitBase : PoolableMono
         StopAllCoroutines(); //죽었을 떄 모든 코루틴 삭제
     }
 
-    private AgentState GetState()
+    protected virtual AgentState GetState()
     {
         AgentState returnState = AgentState.Idle; //default 값 Idle 세팅
 
@@ -91,7 +91,7 @@ public class UnitBase : PoolableMono
         return returnState; //설정한 AgentState값 리턴
     }
 
-    private IEnumerator Cycle()
+    protected virtual IEnumerator Cycle()
     {
         while(!_CurState.HasFlag(AgentState.Die)) //죽으면 와이문 깨져서 die 유니티 이벤트 실행
         {
@@ -155,13 +155,13 @@ public class UnitBase : PoolableMono
         target = targetTrm;
     }
 
-    private float GetDistance(Vector3 performPos, Vector3 targetPos)
+    protected float GetDistance(Vector3 performPos, Vector3 targetPos)
     {
         Vector3 factor = targetPos - performPos;
         return Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2));
     }
 
-    private bool CheckDistance(float dist, Vector3 performPos, Vector3 targetPos)
+    protected bool CheckDistance(float dist, Vector3 performPos, Vector3 targetPos)
     {
         Vector3 factor = targetPos - performPos;
         float distanceWithTarget = Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2)); //피타고라스로 거리 구하기 Vector3.Distance는 컴퓨터가 싫어해요!
