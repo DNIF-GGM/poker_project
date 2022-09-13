@@ -7,71 +7,77 @@ using System.Collections.Generic;
 public class BossBase : PoolableMono, IDamageable, IStateable
 {
     [field : SerializeField]
-    public AgentState State { get; private set; } = AgentState.Idle;
+    public AgentState State { get; private set; } = AgentState.Idle; //현재 상태 보기 위한 직렬화
     [field : SerializeField]
-    public AgentDataSO Data { get; private set; } = null;
+    public AgentDataSO Data { get; private set; } = null; //SO 프로퍼티 할당하기 위한 직렬화
 
-    [SerializeField] UnityEvent basicAttack = null;
-    [SerializeField] UnityEvent specialSkill = null;
-    [SerializeField] List<UnityEvent> skills = null;
-    [SerializeField] float lowHp = 30f;
+    [SerializeField] UnityEvent basicAttack = null; //평타 이벤트
+    [SerializeField] UnityEvent specialSkill = null; //특수 공격 이벤트 (체력이 30 이하일 때 실행되는 거(?) 라고 들음)
+    [SerializeField] List<UnityEvent> skills = null; //스킬 이벤트(스킬 쿨 돌았을 때 랜덤으로 실행됨)
+    [SerializeField] float lowHp = 30f; //체력이 얘보다 낮아지면 특수공격 실행
 
-    private LayerMask unitLayer = 1 << 6;
-    private Transform target = null;
-    private NavMeshAgent nav;
-    private float curDelay = 0f;
-    private float curHp = 0f;
+    private LayerMask unitLayer = 1 << 6; //유닛 레이어
+    private Transform target = null; //타겟
+    private NavMeshAgent nav; //내브매쉬 몰ㄹ루
+    private float curDelay = 0f; //현재 스킬 딜레이
+    private float curHp = 0f; //현태 체력
 
     public override void Reset()
     {
-        nav = GetComponent<NavMeshAgent>();
-        SetTarget(out target, unitLayer);
+        nav = GetComponent<NavMeshAgent>(); 
+        SetTarget(out target, unitLayer); //타겟 지정
         curDelay = 0f;
         curHp = Data._hp;
 
-        StartCoroutine(Cycle());
+        StartCoroutine(Cycle()); //사이클 실행
     }
 
     private void Update()
     {
-        while(curDelay <= Data._delay)
+        while(curDelay <= Data._delay) //딜레이 타이머 증가
             curDelay += Time.deltaTime;
     }
 
     private IEnumerator Cycle()
     {
-        while (!State.HasFlag(AgentState.Die))
+        while (!State.HasFlag(AgentState.Die)) //현재 State가 Die면 사이클 종료
         {
-            if (!State.HasFlag(AgentState.Stun) && TryGetState(out AgentState targetState))
+            if (!State.HasFlag(AgentState.Stun)) 
             {
+                GetState(out AgentState targetState); // target이 null이면 재할당 하고 Attack or Chase State 받기
                 State = targetState;
 
                 switch (State)
                 {
-                    case AgentState.Chase:
+                    case AgentState.Chase: //State 가 Chase 면 추노
                         Chase();
                         break;
-                    case AgentState.Attack:
-                        if (curDelay < Data._delay)
+                    case AgentState.Attack: 
+                        if (curDelay < Data._delay) //State 가 Attack인데 스킬 쿨이 안 돌았으면 평타
                             basicAttack?.Invoke();
                         else
                         {
-                            if(curHp <= lowHp)
+                            if(curHp <= lowHp) //스킬 쿨 돌고 체력 낮으면 실행
                                 specialSkill?.Invoke();
-                            else 
+                            else //스킬 쿨 돌았는데 체력도 빵빵하면 스킬 리스트에서 랜덤으로 하나 뽑아서 실행
                                 skills[Random.Range(0, skills.Count)]?.Invoke();
 
-                            curDelay = 0f;
+                            curDelay = 0f; //딜레이 초기화
                         }
                         break;
                 }
             }
 
-            yield return new WaitForSeconds(10f); //cycle 주기로 바꿔야 됨
+            yield return new WaitForSeconds(Data._cycleTime); //cycleTime 다시 기다리기
         }
     }
 
-    public void OnDamage(float damage)
+    private void OnDisable()
+    {
+        StopAllCoroutines(); //애 죽었을 때 코루틴 끝나버렷
+    }
+
+    public void OnDamage(float damage) //데미지 아얏 인터페이스
     {
         curHp -= damage;
 
@@ -82,17 +88,17 @@ public class BossBase : PoolableMono, IDamageable, IStateable
         }
     }
 
-    private void Die()
+    private void Die() //죽어랏
     {
         Debug.Log("으악!");
     }
 
-    private void Chase()
+    private void Chase() //따라가랏
     {
         nav.SetDestination(target.position);
     }
 
-    private void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
+    private void SetTarget(out Transform target, LayerMask layer, bool getShorter = true) //적 할당
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, Data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
@@ -119,21 +125,20 @@ public class BossBase : PoolableMono, IDamageable, IStateable
         target = targetTrm;
     }
 
-    private bool TryGetState(out AgentState state)
+    private void GetState(out AgentState state) //target이 null이면 false 반환 null 이 아니면 State out
     {
         bool returnValue = target != null;
         AgentState outState = AgentState.Idle;
 
-        if(returnValue)
-        {
-            if(CheckDistance(Data._attackDistance, transform.position, target.transform.position))
-                outState = AgentState.Attack;
-            else 
-                outState = AgentState.Chase;
-        }
+        if(!returnValue)
+            SetTarget(out target, unitLayer);
+
+        if (CheckDistance(Data._attackDistance, transform.position, target.transform.position))
+            outState = AgentState.Attack;
+        else
+            outState = AgentState.Chase;
 
         state = outState;
-        return returnValue;
     }
 
     private bool CheckDistance(float dist, Vector3 performPos, Vector3 targetPos)
@@ -144,27 +149,27 @@ public class BossBase : PoolableMono, IDamageable, IStateable
         return (dist < distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
     }
 
-    public float GetMaxHp()
+    public float GetMaxHp() //최대 체력 반환
     {
         return Data._hp;
     }
 
-    public void DownAtk(float value)
+    public void DownAtk(float value) //공격력 저하
     {
         Data._power *= value;
     }
 
-    public void AddState(AgentState targetState)
+    public void AddState(AgentState targetState) //State 추가
     {
         State |= targetState;
     }
 
-    public void RemoveState(AgentState targetState)
+    public void RemoveState(AgentState targetState) //State 제거
     {
         State &= ~targetState;
     }
 
-    public AgentState GetState()
+    public AgentState GetState() //현재 State 반환
     {
         return State;
     }
