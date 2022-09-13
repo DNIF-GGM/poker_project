@@ -1,17 +1,15 @@
 using System.Collections;
 using UnityEngine.AI;  
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UnitBase : PoolableMono
 {
-    [field : SerializeField]
     public AgnetDataSO _Data { get; private set; } //SO
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
     
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
-    private Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
-    NavMeshAgent nav;
     private float _unitHp = 0f; //현재 체력
     private Animator _anim;
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
@@ -155,7 +153,7 @@ public class UnitBase : PoolableMono
         target = targetTrm;
     }
 
-    protected float GetDistance(Vector3 performPos, Vector3 targetPos)
+    private float GetDistance(Vector3 performPos, Vector3 targetPos)
     {
         Vector3 factor = targetPos - performPos;
         return Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2));

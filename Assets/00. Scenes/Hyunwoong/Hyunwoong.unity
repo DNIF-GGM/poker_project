@@ -3959,6 +3959,38 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: afaf6298218653b428dfc8b663c42532, type: 2}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aef586787f0cb8b42812e90d3999617b, type: 2}
+    - target: {fileID: 13705964, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: aef586787f0cb8b42812e90d3999617b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81ba67e44b1b174d9ef4491f146ee35, type: 3}
 --- !u!1 &1630222361 stripped
