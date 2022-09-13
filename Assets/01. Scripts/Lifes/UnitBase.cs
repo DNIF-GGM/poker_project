@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine.AI;  
 using UnityEngine;
-using UnityEngine.Events;
 
 public class UnitBase : PoolableMono
 {
@@ -153,13 +152,13 @@ public class UnitBase : PoolableMono
         target = targetTrm;
     }
 
-    private float GetDistance(Vector3 performPos, Vector3 targetPos)
+    protected float GetDistance(Vector3 performPos, Vector3 targetPos)
     {
         Vector3 factor = targetPos - performPos;
         return Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2));
     }
 
-    private bool CheckDistance(float dist, Vector3 performPos, Vector3 targetPos)
+    protected bool CheckDistance(float dist, Vector3 performPos, Vector3 targetPos)
     {
         Vector3 factor = targetPos - performPos;
         float distanceWithTarget = Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2)); //피타고라스로 거리 구하기 Vector3.Distance는 컴퓨터가 싫어해요!
