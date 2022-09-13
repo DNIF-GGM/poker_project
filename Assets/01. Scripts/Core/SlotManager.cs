@@ -18,6 +18,11 @@ public class SlotManager : MonoBehaviour
                     currentSelectedCard = hit.collider.GetComponent<Card>();
                     isDrag = true;
                     Cursor.visible = false;
+
+                    if(currentSelectedCard.Slot != null)
+                    {
+                        currentSelectedCard.Slot._CardSlot.Remove(currentSelectedCard.cardEnum);
+                    }
                 }
             }
         }
