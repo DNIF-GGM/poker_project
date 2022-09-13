@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public abstract class Agent : MonoBehaviour
 {
     [Header("Agent")]
-    [SerializeField] protected AgnetDataSO _data;
+    [SerializeField] protected AgentDataSO _data;
     protected State _curState;
     protected NavMeshAgent _agent;
     protected Transform _target;

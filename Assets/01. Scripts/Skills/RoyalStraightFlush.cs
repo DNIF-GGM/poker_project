@@ -16,22 +16,22 @@ public class RoyalStraightFlush : UnitBase
     {
         yield return new WaitForSeconds(firstDuration);
 
-        UnitBase[] units = GameObject.Find("Test").GetComponentsInChildren<UnitBase>();
+        IDamageable[] ids = GameObject.Find("Test").GetComponentsInChildren<IDamageable>();
+        IStateable[] ises = GameObject.Find("Test").GetComponentsInChildren<IStateable>();
 
-        foreach(UnitBase u in units)
-            if(u.CompareTag("Enemy"))
-            {
-                u.Hit(u._Data._hp / 2 + fixedDamage);
-                StartCoroutine(StunCoroutine(stunDuration, u));
-            }
+        foreach (IDamageable id in ids)
+            id.OnDamage(id.GetMaxHp() / 2 + fixedDamage);
+
+        foreach(IStateable ise in ises)
+            StunCoroutine(stunDuration, ise);
     }
 
-    private IEnumerator StunCoroutine(float duration, UnitBase target)
+    private IEnumerator StunCoroutine(float duration, IStateable target)
     {
-        target._CurState |= AgentState.Stun;
+        target.AddState(AgentState.Stun);
 
         yield return new WaitForSeconds(duration);
 
-        target._CurState &= ~AgentState.Stun;
+        target.RemoveState(AgentState.Stun);
     }
 }

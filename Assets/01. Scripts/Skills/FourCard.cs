@@ -10,18 +10,18 @@ public class FourCard : UnitBase
         base.SkillAttack();
 
         SetTarget(out Transform targetTrm, enemy, false);
-        UnitBase targetUnit = targetTrm.GetComponent<UnitBase>();
+        IStateable target = targetTrm.GetComponent<IStateable>();
 
-        if(targetUnit._CurState.HasFlag(AgentState.Stun)) return;
+        if(target.GetState().HasFlag(AgentState.Stun)) return;
     
-        targetUnit._CurState |= AgentState.Stun;
+        target.AddState(AgentState.Stun);
 
-        StartCoroutine(StunCoroutine(stunDuration, targetUnit));
+        StartCoroutine(StunCoroutine(stunDuration, target));
     }
 
-    private IEnumerator StunCoroutine(float duration, UnitBase target)
+    private IEnumerator StunCoroutine(float duration, IStateable target)
     {
         yield return new WaitForSeconds(duration);
-        target._CurState &= ~AgentState.Stun;
+        target.RemoveState(AgentState.Stun);
     }
 }

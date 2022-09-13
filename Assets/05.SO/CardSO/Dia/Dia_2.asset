@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9801986624244884ea0628c7441e353f, type: 3}
   m_Name: Dia_2
   m_EditorClassIdentifier: 
-  cardEnum: 27
+  cardEnum:
+    shapeEnum: 2
+    numberEnum: 1
   mat: {fileID: 2100000, guid: 0429c41a83e4f484a9521c818dce1482, type: 2}
   cost: 0

@@ -3,9 +3,11 @@ using UnityEngine.AI;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UnitBase : PoolableMono
+public class UnitBase : PoolableMono, IDamageable, IStateable
 {
-    public AgnetDataSO _Data { get; private set; } //SO
+
+    [field : SerializeField]
+    public AgentDataSO _Data { get; private set; } //SO
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
     
@@ -32,13 +34,15 @@ public class UnitBase : PoolableMono
     }
     public virtual void BasicAttack(){
         _anim.SetTrigger("IsAttack");
-        _target.GetComponent<UnitBase>().Hit(_Data._power);
+        _target.GetComponent<IDamageable>().OnDamage(_Data._power);
     }
     public virtual void Die(){
         _anim.SetTrigger("IsDie");
         Debug.Log("주금");
     }
-    public virtual void Hit(float damage){
+
+    public void OnDamage(float damage)
+    {
         _UnitHp -= damage;
         if(_UnitHp <= 0){
             Die();
@@ -49,6 +53,8 @@ public class UnitBase : PoolableMono
 
     public override void Reset()
     {
+        _anim.runtimeAnimatorController = _Data.controller;
+
         _UnitHp = _Data._hp; //체력 초기화
         _skillTimer = 0f; //타이머 초기화
 
@@ -56,11 +62,12 @@ public class UnitBase : PoolableMono
         StartCoroutine(Cycle()); //Cycle 코루틴 실행
     }
 
-    protected virtual void Awake()
+    private void Awake()
     {
+        _anim = GetComponent<Animator>();
+
         Reset();
         //_agent = GetComponent<NavMeshAgent>();   
-        _anim = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -80,6 +87,8 @@ public class UnitBase : PoolableMono
 
         if(_target == null) //타겟이 없으면 타겟 재지정
             SetTarget(out _target, enemy);
+
+        if(_target == null) return returnState;
 
         if (CheckDistance(_Data._attackDistance, transform.position, _target.position)) //타겟하고 시전 위치하고 거리 계산
             returnState = AgentState.Attack; //사정거리 안이면 Attack
@@ -174,5 +183,25 @@ public class UnitBase : PoolableMono
     }
     public void DownAtk(float value){
         _Data._power *= value;
+    }
+
+    public void AddState(AgentState targetState)
+    {
+        _CurState |= targetState;
+    }
+
+    public void RemoveState(AgentState targetState)
+    {
+        _CurState &= ~targetState;
+    }
+
+    AgentState IStateable.GetState()
+    {
+        return _CurState;
+    }
+
+    public float GetMaxHp()
+    {
+        return _Data._hp;
     }
 }

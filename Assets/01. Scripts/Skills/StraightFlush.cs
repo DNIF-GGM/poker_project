@@ -5,14 +5,6 @@ using DG.Tweening;
 
 public class  StraightFlush : UnitBase
 {
-    [SerializeField] private AnimationClip _attackClip;
-
-    protected override void Awake() {
-        //_attackController.animationClips[0] = _attackClip;
-
-        base.Awake();
-    }
-
     protected override void Update() {
         if(Input.GetKeyDown(KeyCode.G)){
             SkillAttack();
@@ -26,9 +18,9 @@ public class  StraightFlush : UnitBase
 
         if(colliders.Length != 0){
             foreach(Collider col in colliders){
-                if(col.GetComponent<UnitBase>() == null && !col.transform.CompareTag("Enemy")) continue;
+                if(col.GetComponent<IDamageable>() == null && !col.transform.CompareTag("Enemy")) continue;
 
-                col.GetComponent<UnitBase>().Hit(10);
+                col.GetComponent<IDamageable>().OnDamage(10);
             }
         }
 

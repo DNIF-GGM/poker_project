@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FullHouse : UnitBase
@@ -16,8 +15,8 @@ public class FullHouse : UnitBase
         while(time > 3){
             Collider[] col = Physics.OverlapSphere(trm.position, 3f, enemy);
             foreach(Collider c in col){
-                if(c.GetComponent<UnitBase>() != null && !c.transform.CompareTag("Enemy")) continue;
-                c.GetComponent<UnitBase>().Hit(2);
+                if(c.GetComponent<IDamageable>() != null && !c.transform.CompareTag("Enemy")) continue;
+                c.GetComponent<IDamageable>().OnDamage(2);
             }    
 
             yield return new WaitForSeconds(1f);
