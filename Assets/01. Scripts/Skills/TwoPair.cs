@@ -11,6 +11,6 @@ public class TwoPair : UnitBase
     {
         base.SkillAttack();
         SetTarget(out Transform target,LayerMask.NameToLayer("Enemy"));
-        target.GetComponent<UnitBase>().DownAtk(debuffValue/100);
+        target.GetComponent<IDamageable>().DownAtk(debuffValue/100);
     }
 }

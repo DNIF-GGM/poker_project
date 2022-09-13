@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine.AI;  
 using UnityEngine;
 
-public class UnitBase : PoolableMono
+public class UnitBase : PoolableMono, IDamageable, IStateable
 {
     [field : SerializeField]
     public AgentDataSO _Data { get; private set; } //SO
@@ -31,13 +31,15 @@ public class UnitBase : PoolableMono
     }
     public virtual void BasicAttack(){
         _anim.SetTrigger("IsAttack");
-        _target.GetComponent<UnitBase>().Hit(_Data._power);
+        _target.GetComponent<IDamageable>().OnDamage(_Data._power);
     }
     public virtual void Die(){
         _anim.SetTrigger("IsDie");
         Debug.Log("주금");
     }
-    public virtual void Hit(float damage){
+
+    public void OnDamage(float damage)
+    {
         _UnitHp -= damage;
         if(_UnitHp <= 0){
             Die();
@@ -178,5 +180,25 @@ public class UnitBase : PoolableMono
     }
     public void DownAtk(float value){
         _Data._power *= value;
+    }
+
+    public void AddState(AgentState targetState)
+    {
+        _CurState |= targetState;
+    }
+
+    public void RemoveState(AgentState targetState)
+    {
+        _CurState &= ~targetState;
+    }
+
+    AgentState IStateable.GetState()
+    {
+        return _CurState;
+    }
+
+    public float GetMaxHp()
+    {
+        return _Data._hp;
     }
 }
