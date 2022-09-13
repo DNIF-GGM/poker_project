@@ -3,7 +3,9 @@ guid: c116ab560b7610e4191b46f538ddc7ec
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - <_Data>k__BackingField: {fileID: 11400000, guid: e136df6203034d840866fefa2cfb88d7,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
