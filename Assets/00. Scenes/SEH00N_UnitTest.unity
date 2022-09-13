@@ -1146,9 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae84e50c6b92fa34e9a92b8405bb3f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 7f688c925bafa71429e1bac4a043882a, type: 2}
-  _curState: 0
-  _unitHp: 0
+  <_Data>k__BackingField: {fileID: 0}
   firstDuration: 3
   stunDuration: 5
   fixedDamage: 5
@@ -3248,9 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b21c0695d44a498f04df7c85b389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 7f688c925bafa71429e1bac4a043882a, type: 2}
-  _curState: 0
-  _unitHp: 0
+  <_Data>k__BackingField: {fileID: 0}
 --- !u!54 &460104374
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13114,9 +13110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b21c0695d44a498f04df7c85b389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 7f688c925bafa71429e1bac4a043882a, type: 2}
-  _curState: 0
-  _unitHp: 0
+  <_Data>k__BackingField: {fileID: 0}
 --- !u!54 &2043987454
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13220,9 +13214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b21c0695d44a498f04df7c85b389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 7f688c925bafa71429e1bac4a043882a, type: 2}
-  _curState: 0
-  _unitHp: 0
+  <_Data>k__BackingField: {fileID: 0}
 --- !u!54 &2055594633
 Rigidbody:
   m_ObjectHideFlags: 0
