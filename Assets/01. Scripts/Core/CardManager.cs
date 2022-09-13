@@ -9,9 +9,6 @@ public class CardManager : MonoBehaviour
 
     [SerializeField] private List<CardSO> _cardSo = new List<CardSO>();
 
-    [field: SerializeField] //수정 후
-    public List<CardGenealogy> Genealogies { get; private set; } = new List<CardGenealogy>();
-
     private List<CardSlot> _cardSlots = new List<CardSlot>();
     public List<CardSlot> CardSlots { get => _cardSlots; set => _cardSlots = value; }
 
@@ -25,9 +22,6 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         _cardParentTrm = GameObject.Find("CardCanvas").transform;
-
-        foreach (CardGenealogy g in Genealogies)
-            g.combi.Sort();
     }
 
     private void Update() {
