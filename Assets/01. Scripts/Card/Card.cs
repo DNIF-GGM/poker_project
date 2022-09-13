@@ -4,7 +4,9 @@ using DG.Tweening;
 public class Card : PoolableMono {
     
     [SerializeField] private CardEnum _cardEnum;
+    [SerializeField] private NumberEnum _numberEnum;
     [SerializeField] private Material _cardMat;
+    
     public CardEnum cardEnum {get => _cardEnum;}
     public Material cardMat {get => _cardMat;}
     public CardSlot Slot { get; set; } = null;

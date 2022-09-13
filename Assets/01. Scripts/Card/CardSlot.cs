@@ -63,15 +63,13 @@ public class CardSlot : MonoBehaviour
     public void CheckSlot(){
         if(_cardSlot.Count <= 0) return;
 
-        _cardSlot.Sort();
-
-        foreach(CardGenealogy g in CardManager.Instance.Genealogies)
-        {
-            if(g.combi.SequenceEqual(_cardSlot)) {
-                string genealogy = g.genealogyName;
-                Debug.Log(genealogy);
-                //Unit unit = PoolManager.Instance.Pop(genealogy) as Unit;
-                //unit.transform.position = unitSpawnPos;
+        string outname = null;
+        if(GameManager.Instance.CardGenealogy(_cardSlot, out outname)){
+            if(outname != null)
+            {
+                UnitBase unit = PoolManager.Instance.Pop(outname) as UnitBase;
+                unit.transform.position = transform.position;
+                unit.transform.rotation = Quaternion.identity;
             }
         }
 
