@@ -68,7 +68,7 @@ public class CardManager : MonoBehaviour
             rect.localRotation = Quaternion.Euler(0, 0, 180);
             rect.localScale = new Vector3(100, 100, 100);
             
-            card.CardStatusSet(_cardSo[Random.Range(0, 53)]);
+            card.CardStatusSet(_cardSo[Random.Range(0, 52)]);
 
             yield return new WaitForSecondsRealtime(0.02f);
         }
