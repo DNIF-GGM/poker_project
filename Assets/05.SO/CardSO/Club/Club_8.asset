@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9801986624244884ea0628c7441e353f, type: 3}
   m_Name: Club_8
   m_EditorClassIdentifier: 
-  cardEnum: 46
+  cardEnum:
+    shapeEnum: 3
+    numberEnum: 7
   mat: {fileID: 2100000, guid: 4d428f15bcf604d2f859f1eacd86418a, type: 2}
   cost: 0
