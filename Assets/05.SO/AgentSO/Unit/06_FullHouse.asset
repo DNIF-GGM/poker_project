@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10de3a1692c6f7042a90c33c305a5fcd, type: 3}
   m_Name: 06_FullHouse
   m_EditorClassIdentifier: 
+  controller: {fileID: 22100000, guid: 9c1a109c58521e344b3de2ac7edd9bf4, type: 2}
   _hp: 50
   _cycleTime: 0.5
   _distance: 100

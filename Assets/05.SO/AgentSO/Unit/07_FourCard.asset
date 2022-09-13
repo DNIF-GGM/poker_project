@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10de3a1692c6f7042a90c33c305a5fcd, type: 3}
   m_Name: 07_FourCard
   m_EditorClassIdentifier: 
+  controller: {fileID: 22100000, guid: 23170e4c742a9cb4c82ec2a63e0c7423, type: 2}
   _hp: 50
   _cycleTime: 0.5
   _distance: 100
