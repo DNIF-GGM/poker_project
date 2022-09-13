@@ -19,7 +19,7 @@ public class FirstUnit : Agent
         print(_curState);
     }
 
-    protected override void Attack()
+    protected override void Attack()//Attack Distance랑 Distance랑 나뉘어있긴해
     {
 
         if (_target == null)
@@ -29,18 +29,7 @@ public class FirstUnit : Agent
         else
         {
             print("Attack!");
-            Collider[] atkCol = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y, transform.position.z + _data._attackDistance), 2, enemy);
-            foreach(Collider col in atkCol)
-            {
-                print(col.name);
-                col.GetComponent<Agent>().Hit(50);
-
-                if(col == null)
-                {
-                    _curState = State.Chase;
-                }
-            }
-
+            //_target.GetComponent<Agent>().Hit(10);
             _curState = State.Attack;
         }
     }
@@ -58,6 +47,10 @@ public class FirstUnit : Agent
             _agent.isStopped = true;
             _curState = State.Attack;
         }
+    }
+    protected override void Stun()
+    {
+        throw new System.NotImplementedException();
     }
 
     protected override void Die()

@@ -4,13 +4,20 @@ using DG.Tweening;
 public class Card : PoolableMono {
     
     [SerializeField] private CardEnum _cardEnum;
+    [SerializeField] private NumberEnum _numberEnum;
     [SerializeField] private Material _cardMat;
+    
     public CardEnum cardEnum {get => _cardEnum;}
     public Material cardMat {get => _cardMat;}
+    public CardSlot Slot { get; set; } = null;
 
     public CardSO cardSO {get; private set;}
 
     public bool isOnSlot {get; set;} = false;
+
+    private void OnEnable() {
+        isOnSlot = false;
+    }
 
     public void CardStatusSet(CardSO cardSO){
         this.cardSO = cardSO;

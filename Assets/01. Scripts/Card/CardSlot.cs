@@ -8,6 +8,7 @@ using UnityEngine;
 public class CardSlot : MonoBehaviour
 {
     [SerializeField] private List<CardEnum> _cardSlot = new List<CardEnum>();
+    public List<CardEnum> _CardSlot => _cardSlot;
     [SerializeField] private Vector3 cardSpawnFactor = new Vector3();
     [SerializeField] private Vector3 unitSpawnPos = new Vector3();
     [SerializeField] private int maxCardCount = 5;
@@ -40,6 +41,7 @@ public class CardSlot : MonoBehaviour
 
         Cursor.visible = true;
         card.isOnSlot = true;
+        card.Slot = this;
         SlotManager.Instance.isDrag = false;
         SlotManager.Instance.ResetSelectedCard();
     }
@@ -61,15 +63,13 @@ public class CardSlot : MonoBehaviour
     public void CheckSlot(){
         if(_cardSlot.Count <= 0) return;
 
-        _cardSlot.Sort();
-
-        foreach(CardGenealogy g in CardManager.Instance.Genealogies)
-        {
-            if(g.combi.SequenceEqual(_cardSlot)) {
-                string genealogy = g.genealogyName;
-                Debug.Log(genealogy);
-                //Unit unit = PoolManager.Instance.Pop(genealogy) as Unit;
-                //unit.transform.position = unitSpawnPos;
+        string outname = null;
+        if(GameManager.Instance.CardGenealogy(_cardSlot, out outname)){
+            if(outname != null)
+            {
+                UnitBase unit = PoolManager.Instance.Pop(outname) as UnitBase;
+                unit.transform.position = transform.position;
+                unit.transform.rotation = Quaternion.identity;
             }
         }
 
