@@ -42,4 +42,10 @@ public class MonsterBase : UnitBase
 
         Die();
     }
+
+    public override void BasicAttack()
+    {
+        base.BasicAttack();
+        _target.GetComponent<IDamageable>().OnDamage(10f);
+    }
 }
