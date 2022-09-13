@@ -5,14 +5,6 @@ using DG.Tweening;
 
 public class  StraightFlush : UnitBase
 {
-    [SerializeField] private AnimationClip _attackClip;
-
-    protected override void Awake() {
-        //_attackController.animationClips[0] = _attackClip;
-
-        base.Awake();
-    }
-
     protected override void Update() {
         if(Input.GetKeyDown(KeyCode.G)){
             SkillAttack();

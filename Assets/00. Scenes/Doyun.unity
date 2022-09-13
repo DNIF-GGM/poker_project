@@ -3133,7 +3133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d3df80b30c7fb4eb51d4d7fe3e1420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackClip: {fileID: 0}
+  <_Data>k__BackingField: {fileID: 11400000, guid: 7f688c925bafa71429e1bac4a043882a,
+    type: 2}
 --- !u!137 &150769613
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
