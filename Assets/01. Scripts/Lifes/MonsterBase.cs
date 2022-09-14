@@ -8,6 +8,9 @@ public class MonsterBase : UnitBase
     protected override void Update()
     {
         base.Update();
+
+        if(Input.GetKeyDown(KeyCode.K))
+            BasicAttack();
     }
 
     protected override AgentState GetState()
