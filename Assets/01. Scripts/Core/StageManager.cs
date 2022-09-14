@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +10,23 @@ public class StageManager : MonoBehaviour
     private float elapsedTime = 0;
     private int currentStageIndex = 0;
     private Theme currentTheme = null;
+    private GameObject readyToFightPanel = null;
+    private GameObject cardPanel = null;
 
     [field: SerializeField]
     public List<Stage> Stages { get; set; } = new List<Stage>();
+
+    private void Awake()
+    {
+        readyToFightPanel = GameObject.Find("UICanvas/ReadyToFightPanel");
+        cardPanel = GameObject.Find("CardCanvas");
+    }
+
+    private void Start()
+    {
+        LoadStage(currentStageIndex);
+        CardManager.Instance.CardSpawn();
+    }
 
     //스테이지 시작
     public void StartStage()
@@ -21,11 +34,11 @@ public class StageManager : MonoBehaviour
         Debug.Log("시작");
         OnFight = true;
 
-        //전투대기 패널 끄기
+        readyToFightPanel.SetActive(false);
+        cardPanel.SetActive(false);
 
         CardManager.Instance.ClearCard();
         CardManager.Instance.SpawnUnit();
-        LoadStage(currentStageIndex);
     }
 
     private void Update()

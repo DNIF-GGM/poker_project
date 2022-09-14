@@ -19,6 +19,8 @@ public class CardManager : MonoBehaviour
 
     private bool isReroll = false;
 
+    public int RerollCost = 5;
+
     private void Awake()
     {
         _cardParentTrm = GameObject.Find("CardCanvas").transform;
@@ -43,6 +45,19 @@ public class CardManager : MonoBehaviour
             Card card = _cardParentTrm.GetChild(0).GetComponent<Card>();
             PoolManager.Instance.Push(card);
         }
+    }
+
+    public void RerollCard()
+    {
+        if(isReroll) return;
+        if(CoinManager.Instance.CurrentCoin - RerollCost < 0)
+        {
+            Debug.Log("돈이 없다 이자식다");
+            return;
+        }
+
+        CoinManager.Instance.PayCoin(RerollCost);
+        CardSpawn();
     }
 
     public void CardSpawn(){

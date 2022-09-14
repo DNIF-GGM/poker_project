@@ -16,4 +16,4 @@ MonoBehaviour:
     shapeEnum: 3
     numberEnum: 12
   mat: {fileID: 2100000, guid: 4cf87d08fb1a34646a83e461142a3070, type: 2}
-  cost: 0
+  cost: 1

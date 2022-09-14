@@ -24,6 +24,11 @@ public class CardSlot : MonoBehaviour
 
         if(transform.childCount - 1 >= maxCardCount) return;
 
+        if(!CoinManager.Instance.TryBettingCoin(SlotManager.Instance.currentSelectedCard.cardSO.cost)) 
+        {
+            Debug.Log("돈이 없다 이자식아");
+            return;
+        }
         Card card = PoolManager.Instance.Pop("Card") as Card;
         card.GetComponent<RectTransform>().localScale = new Vector3(30, 30, 30);
         card.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);

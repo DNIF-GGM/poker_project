@@ -7,5 +7,5 @@ public class CardSO : ScriptableObject
 {
     public CardEnum cardEnum;
     public Material mat;
-    public float cost;
+    public int cost;
 }
