@@ -44,10 +44,10 @@ public class CoinManager : MonoBehaviour
     }
 
     public void PayCoin(int reduceCoin){
-        if(_currentCoin - reduceCoin <= 0) return;
+        if(_currentCoin - reduceCoin < 0) return;
 
         _currentCoin -= reduceCoin;
-        CoinBetting(reduceCoin);
+        coinInfoTMP.text = "Coin : " + _currentCoin;
     }
 
     public void UpdateCoin(float multipleNum){
