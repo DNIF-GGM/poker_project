@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10de3a1692c6f7042a90c33c305a5fcd, type: 3}
   m_Name: TestMonster
   m_EditorClassIdentifier: 
-  controller: {fileID: 22100000, guid: 21a520df4c235854f9c2a367807a8ad5, type: 2}
+  controller: {fileID: 22100000, guid: f7b21a8ae92bfcb43bd6a94faccb6948, type: 2}
   _skillDamage: 5
   _hp: 5
   _cycleTime: 5
-  _distance: 5
-  _attackDistance: 5
+  _distance: 100
+  _attackDistance: 100
   _speed: 5
   _delay: 5
   _power: 5
