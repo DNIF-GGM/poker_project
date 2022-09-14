@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10de3a1692c6f7042a90c33c305a5fcd, type: 3}
   m_Name: TestMonster
   m_EditorClassIdentifier: 
-  controller: {fileID: 22100000, guid: 6e442e94420fb8e4fa4095c945bbe447, type: 2}
+  controller: {fileID: 22100000, guid: 21a520df4c235854f9c2a367807a8ad5, type: 2}
   _skillDamage: 5
   _hp: 5
   _cycleTime: 5

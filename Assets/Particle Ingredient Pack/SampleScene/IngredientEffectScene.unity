@@ -1845,7 +1845,7 @@ MonoBehaviour:
   - {fileID: 103900, guid: 3c6b6cb700782475a87e41152b3e077d, type: 3}
   - {fileID: 123030, guid: c688614c0f5514672bea5467754dce99, type: 3}
   - {fileID: 117132, guid: 8976b774455b8459c8e7931ab54fdc7c, type: 3}
-  Text: {fileID: 38158289}
+  Text: {fileID: 0}
   mg: {fileID: 905800172}
   isIngredientScene: 1
   isExampleScene: 0
