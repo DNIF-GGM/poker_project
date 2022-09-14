@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9801986624244884ea0628c7441e353f, type: 3}
   m_Name: Heart_10
   m_EditorClassIdentifier: 
-  cardEnum: 22
+  cardEnum:
+    shapeEnum: 1
+    numberEnum: 9
   mat: {fileID: 2100000, guid: bed4aec27939541a8a39ec546fec313e, type: 2}
-  cost: 0
+  cost: 3

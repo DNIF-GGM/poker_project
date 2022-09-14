@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9801986624244884ea0628c7441e353f, type: 3}
   m_Name: Spade_6
   m_EditorClassIdentifier: 
-  cardEnum: 5
+  cardEnum:
+    shapeEnum: 0
+    numberEnum: 5
   mat: {fileID: 2100000, guid: 47d6e802d5d4542be95cf5ba943114cf, type: 2}
-  cost: 0
+  cost: 4

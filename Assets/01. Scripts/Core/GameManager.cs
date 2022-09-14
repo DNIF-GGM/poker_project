@@ -2,6 +2,7 @@ using System.Threading;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,14 +57,16 @@ public class GameManager : MonoBehaviour
         NumberEnum[] answerNums = new NumberEnum[5] {NumberEnum.ten, NumberEnum.jack, NumberEnum.queen, NumberEnum.king, NumberEnum.one};
         NumberEnum[] cardNums = new NumberEnum[5];
 
-
         for(int i = 0; i < cards.Count; i++){
             if(cards[i].shapeEnum != standardEnum) return false;
 
             cardNums[i] = cards[i].numberEnum;
         }
-        
-        if(cardNums.SequenceEqual(answerNums)){
+
+        Array.Sort(cardNums);
+        Array.Sort(answerNums);
+
+        if (cardNums.SequenceEqual(answerNums)){
             name = "Royal";
             Debug.Log("name");
             return true;
