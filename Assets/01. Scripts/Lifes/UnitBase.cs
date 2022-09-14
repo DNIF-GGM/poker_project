@@ -10,7 +10,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     public float _UnitHp { get; set; } = 0f; //현재 체력
     
     //private NavMeshAgent _agent; //내브메쉬 몰ㄹ루
-    private Animator _anim;
+    protected Animator _anim;
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
 
     protected Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
@@ -62,6 +62,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+        nav = GetComponent<NavMeshAgent>();
 
         Reset();
         //_agent = GetComponent<NavMeshAgent>();   
