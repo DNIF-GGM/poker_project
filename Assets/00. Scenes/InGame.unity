@@ -4140,7 +4140,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 499386d7d62dfd0448c0f401d45563c3, type: 2}
   - {fileID: 11400000, guid: ae74228df98223b449f732d94fa39141, type: 2}
   - {fileID: 11400000, guid: 3aba1a522d31aa44bba25b81fc74a555, type: 2}
-  <Genealogies>k__BackingField: []
 --- !u!114 &1718395277
 MonoBehaviour:
   m_ObjectHideFlags: 0
