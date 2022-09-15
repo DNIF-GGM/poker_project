@@ -110,7 +110,7 @@ public class BossBase : PoolableMono, IDamageable, IStateable
         nav.SetDestination(target.position);
     }
 
-    private void SetTarget(out Transform target, LayerMask layer, bool getShorter = true) //적 할당
+    protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true) //적 할당
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, Data._distance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
