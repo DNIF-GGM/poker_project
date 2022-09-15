@@ -15,7 +15,7 @@ public class FullHouse : UnitBase
         while(time > 3){
             Collider[] col = Physics.OverlapSphere(trm.position, 3f, enemy);
             foreach(Collider c in col){
-                if(c.GetComponent<IDamageable>() != null && !c.transform.CompareTag("Enemy")) continue;
+                if(c.GetComponent<IDamageable>() != null || !c.transform.CompareTag("Enemy")) continue;
                 c.GetComponent<IDamageable>().OnDamage(2);
             }    
 

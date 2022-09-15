@@ -103,16 +103,15 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
             if(!_CurState.HasFlag(AgentState.Stun))
             {
                 _CurState = GetState(); //타겟이 없으면 타겟 지정 후 적이 사정거리 안에 있을 때 Attack 반환 사정거리 밖에 있을 떄 Chase 반환
-                switch (_CurState)
-                {
-                    case AgentState.Chase:
-                        Chase(); //Chase일 때 적을 쫓는 유니티 이벤트 실행
-                        break;
-                    case AgentState.Attack:
-                        if(CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); ////Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
-                        else BasicAttack(); ////Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
-                        break;
-                }
+                switch (_CurState){
+                case AgentState.Chase:
+                    Chase(); //Chase일 때 적을 쫓는 유니티 이벤트 실행
+                    break;
+                case AgentState.Attack:
+                    if(CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); ////Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
+                    else BasicAttack(); ////Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
+                     break;
+                 }
             }
             yield return new WaitForSeconds(_Data._cycleTime); //사이클 주기 실행
         }

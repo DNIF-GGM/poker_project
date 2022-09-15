@@ -9,7 +9,7 @@ public class Flush : UnitBase
         Collider[] colliders = Physics.OverlapSphere(_target.position, 2.5f, enemy);
 
         foreach(Collider c in colliders){
-            if(c.GetComponent<IDamageable>() != null && !c.transform.CompareTag("Enemy")) continue;
+            if(c.GetComponent<IDamageable>() != null || !c.transform.CompareTag("Enemy")) continue;
 
             c.GetComponent<IDamageable>().OnDamage(7);
         }

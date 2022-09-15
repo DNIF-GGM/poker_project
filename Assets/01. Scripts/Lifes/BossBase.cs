@@ -16,16 +16,19 @@ public class BossBase : PoolableMono, IDamageable, IStateable
     [SerializeField] List<UnityEvent> skills = null; //스킬 이벤트(스킬 쿨 돌았을 때 랜덤으로 실행됨)
     [SerializeField] float lowHp = 30f; //체력이 얘보다 낮아지면 특수공격 실행
 
-    private LayerMask unitLayer = 1 << 6; //유닛 레이어
-    private Transform target = null; //타겟
+    protected LayerMask unitLayer = 1 << 6; //유닛 레이어
+    protected Transform target = null; //타겟
     private NavMeshAgent nav; //내브매쉬 몰ㄹ루
     private float curDelay = 0f; //현재 스킬 딜레이
-    private float curHp = 0f; //현태 체력
+    protected float curHp = 0f; //현태 체력
+    protected Animator animator;
 
     public override void Reset()
     {
         nav = GetComponent<NavMeshAgent>(); 
+        animator = GetComponent<Animator>();
         SetTarget(out target, unitLayer); //타겟 지정
+        animator.runtimeAnimatorController = Data.controller;
         curDelay = 0f;
         curHp = Data._hp;
 
@@ -59,9 +62,12 @@ public class BossBase : PoolableMono, IDamageable, IStateable
                         {
                             if(curHp <= lowHp) //스킬 쿨 돌고 체력 낮으면 실행
                                 specialSkill?.Invoke();
-                            else //스킬 쿨 돌았는데 체력도 빵빵하면 스킬 리스트에서 랜덤으로 하나 뽑아서 실행
-                                skills[Random.Range(0, skills.Count)]?.Invoke();
-
+                            else{ //스킬 쿨 돌았는데 체력도 빵빵하면 스킬 리스트에서 랜덤으로 하나 뽑아서 실행
+                                int skillNum = Random.Range(0, skills.Count);
+                                //animator.SetTrriger($"IsSkill{skillNum}"); // 스킬 애니메이션 실행하기
+                                skills[skillNum]?.Invoke();
+                            } 
+                                
                             curDelay = 0f; //딜레이 초기화
                         }
                         break;
