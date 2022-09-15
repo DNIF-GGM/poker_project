@@ -17,10 +17,11 @@ public class BossBase : PoolableMono, IDamageable, IStateable
     [SerializeField] float lowHp = 30f; //체력이 얘보다 낮아지면 특수공격 실행
 
     private LayerMask unitLayer = 1 << 6; //유닛 레이어
-    private Transform target = null; //타겟
     private NavMeshAgent nav; //내브매쉬 몰ㄹ루
     private float curDelay = 0f; //현재 스킬 딜레이
-    private float curHp = 0f; //현태 체력
+    protected float curHp = 0f; //현태 체력
+    
+    protected Transform target = null; //타겟
 
     public override void Reset()
     {
@@ -98,7 +99,7 @@ public class BossBase : PoolableMono, IDamageable, IStateable
         nav.SetDestination(target.position);
     }
 
-    private void SetTarget(out Transform target, LayerMask layer, bool getShorter = true) //적 할당
+    protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true) //적 할당
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, Data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
