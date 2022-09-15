@@ -10,14 +10,16 @@ Material:
   m_Name: Shader Graphs_Dissolve
   m_Shader: {fileID: -6465566751694194690, guid: ffacd0fae19f34845bb33b2f5e542201,
     type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _SPECULAR_SETUP
+  m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -44,26 +46,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _Dissolve: 2.5
-    - _DstBlend: 10
-    - _EdgeWidth: 0.5
-    - _Noise_Scale: 75
-    - _Noise_Strength: 1
+    - _Dissolve: 2.12
+    - _DstBlend: 0
+    - _EdgeWidth: 0.11
+    - _Noise_Scale: 97.1
+    - _Noise_Strength: 0.708
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SrcBlend: 5
-    - _Surface: 1
+    - _SrcBlend: 1
+    - _Surface: 0
     - _WorkflowMode: 0
     - _ZTest: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 4, g: 2.870588, b: 0, a: 0}
+    - _Color: {r: 1024, g: 614.4, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4598119194957844023
 MonoBehaviour:
