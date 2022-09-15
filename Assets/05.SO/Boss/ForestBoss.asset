@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10de3a1692c6f7042a90c33c305a5fcd, type: 3}
+  m_Name: ForestBoss
+  m_EditorClassIdentifier: 
+  controller: {fileID: 22100000, guid: 3ad94734d98f8044288fe1279ecd2c08, type: 2}
+  _skillDamage: 5
+  _hp: 100
+  _cycleTime: 1
+  _distance: 10
+  _attackDistance: 10
+  _speed: 5
+  _delay: 1
+  _power: 10

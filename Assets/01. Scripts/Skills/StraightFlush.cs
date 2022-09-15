@@ -18,7 +18,7 @@ public class  StraightFlush : UnitBase
 
         if(colliders.Length != 0){
             foreach(Collider col in colliders){
-                if(col.GetComponent<IDamageable>() == null && !col.transform.CompareTag("Enemy")) continue;
+                if(col.GetComponent<IDamageable>() == null || !col.transform.CompareTag("Enemy")) continue;
 
                 col.GetComponent<IDamageable>().OnDamage(10);
             }
