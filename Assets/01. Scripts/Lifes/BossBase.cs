@@ -23,6 +23,11 @@ public class BossBase : PoolableMono, IDamageable, IStateable
     protected float curHp = 0f; //현태 체력
     protected Animator animator;
 
+    private void Awake()
+    {
+        Reset();
+    }
+
     public override void Reset()
     {
         nav = GetComponent<NavMeshAgent>(); 

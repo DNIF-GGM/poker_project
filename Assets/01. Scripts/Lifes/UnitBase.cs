@@ -73,7 +73,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         _CurState |= AgentState.Idle; //디폴트 State 설정
         StartCoroutine(Cycle()); //Cycle 코루틴 실행
 
-        mat = gameObject.GetComponent<MeshRenderer>().material;
+        mat = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
     }
 
     private void Awake()
