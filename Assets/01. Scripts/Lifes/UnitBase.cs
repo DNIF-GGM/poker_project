@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Collections;
 using UnityEngine.AI;  
 using UnityEngine;
@@ -6,6 +7,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 {
     [field : SerializeField]
     public AgentDataSO _Data { get; private set; } //SO
+    [field : SerializeField]
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
     
@@ -13,6 +15,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     protected Animator _anim;
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
 
+    [SerializeField]
     protected Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
     NavMeshAgent nav;
 
@@ -27,7 +30,10 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         }
     } 
     public virtual void Chase(){
+        nav.isStopped = false;
+        nav.enabled = false;
         nav.SetDestination(_target.position);
+        nav.enabled = true;
     }
     public virtual void BasicAttack(){
         _anim.SetTrigger("IsAttack");
@@ -36,6 +42,12 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     public virtual void Die(){
         _anim.SetTrigger("IsDie");
         Debug.Log("주금");
+        StageManager.Instance.Units.Remove(this);
+        PoolManager.Instance.Push(this);
+        if(StageManager.Instance.Units.Count <= 0)
+        {
+            StageManager.Instance.StageOver(true);
+        }
     }
 
     public void OnDamage(float damage)
@@ -48,8 +60,9 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Debug.Log("마즘");
     }
 
-    public override void Reset()
+    private IEnumerator FightCoroutine()
     {
+        yield return null;
         _anim.runtimeAnimatorController = _Data.controller;
 
         _UnitHp = _Data._hp; //체력 초기화
@@ -59,12 +72,21 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         StartCoroutine(Cycle()); //Cycle 코루틴 실행
     }
 
+    public void StartFight()
+    {
+        StartCoroutine(FightCoroutine());
+    }
+
+    public override void Reset()
+    {
+        StartFight();
+    }
+
     private void Awake()
     {
         _anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
-        Reset();
         //_agent = GetComponent<NavMeshAgent>();   
     }
 
@@ -135,7 +157,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 
     protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _Data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
+        Collider[] cols = Physics.OverlapSphere(transform.position, _Data._distance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
         Transform targetTrm = null;
 
@@ -171,7 +193,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Vector3 factor = targetPos - performPos;
         float distanceWithTarget = Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2)); //피타고라스로 거리 구하기 Vector3.Distance는 컴퓨터가 싫어해요!
 
-        return (dist < distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
+        return (dist > distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
     }
 
     private void IncreaseTimer(ref float timer, float targetTime) 

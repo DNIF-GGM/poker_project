@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 22100000, guid: 75dfc5a35d74f5344b7cafb76fc18195, type: 2}
   _skillDamage: 5
-  _hp: 5
-  _cycleTime: 5
-  _distance: 5
-  _attackDistance: 5
+  _hp: 50
+  _cycleTime: 3
+  _distance: 10000
+  _attackDistance: 1
   _speed: 5
   _delay: 5
   _power: 5
