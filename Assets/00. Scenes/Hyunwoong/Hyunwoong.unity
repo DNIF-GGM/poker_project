@@ -4627,6 +4627,7 @@ GameObject:
   - component: {fileID: 1718395273}
   - component: {fileID: 1718395276}
   - component: {fileID: 1718395277}
+  - component: {fileID: 1718395278}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4663,8 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userSetting:
-    effectVolume: 0
-    systemVolume: 0
+    sfxVolume: 0
     bgmVolume: 0
     masterVolume: 0
 --- !u!114 &1718395275
@@ -4747,6 +4747,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 499386d7d62dfd0448c0f401d45563c3, type: 2}
   - {fileID: 11400000, guid: ae74228df98223b449f732d94fa39141, type: 2}
   - {fileID: 11400000, guid: 3aba1a522d31aa44bba25b81fc74a555, type: 2}
+  _cardPrefab: {fileID: 0}
+  RerollCost: 5
 --- !u!114 &1718395277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4760,7 +4762,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 1
+  <Units>k__BackingField: []
+  <Monsters>k__BackingField: []
   <Stages>k__BackingField: []
+--- !u!114 &1718395278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718395267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157b4fc3e13925644a4250b81b24273d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipList:
+  - {fileID: 8300000, guid: 12cf1d39888c2ee49b95d7d44a1c0574, type: 3}
+  - {fileID: 8300000, guid: 06d93625c0b31c5459c32009d41b56ef, type: 3}
+  - {fileID: 8300000, guid: cbab434c6e0f29a42a8e9967a648637c, type: 3}
+  - {fileID: 8300000, guid: 003a2c75e6d59e04e8ff39a0287e1ff2, type: 3}
+  - {fileID: 8300000, guid: 6a59de8e87b410e4d856217bea792187, type: 3}
+  - {fileID: 8300000, guid: d9c6c016a3026d745840202228cc379e, type: 3}
+  - {fileID: 8300000, guid: dfec0493faf7b03489bd9d0d81cf049e, type: 3}
+  - {fileID: 8300000, guid: b878ca05040d5ae43aacc9f230b58381, type: 3}
+  - {fileID: 8300000, guid: 32afb9ede3e04d140bd258d5be565e91, type: 3}
+  - {fileID: 8300000, guid: 1a045e5b974bfb84dbef83207aa4ec57, type: 3}
+  - {fileID: 8300000, guid: 44824d55e8accb24882e86b36887faaf, type: 3}
+  - {fileID: 8300000, guid: 660f577a864740a4898eec782b4aa4ec, type: 3}
+  - {fileID: 8300000, guid: 18124774d79ae7c40a3327f8d24e3407, type: 3}
+  - {fileID: 8300000, guid: cf9c0b9c79ff3e14aab63b731e8a5548, type: 3}
+  - {fileID: 8300000, guid: 043750e54895dff409f674e95a3e101f, type: 3}
+  - {fileID: 8300000, guid: 9ba90ee15c6a07544b38392b8e7c565c, type: 3}
+  - {fileID: 8300000, guid: 046bb115fdec07649b0c02a2577ccb80, type: 3}
+  - {fileID: 8300000, guid: 5e8e4a672ef8ca340be747f05417507a, type: 3}
+  - {fileID: 8300000, guid: 598323575e68cd94e979314ed750a02d, type: 3}
+  - {fileID: 8300000, guid: d85f9c27ac3a83c458e3ea256fab5e4b, type: 3}
+  - {fileID: 8300000, guid: 268a83ed5fe03464aa308bb8fc403ad5, type: 3}
+  - {fileID: 8300000, guid: 89ce469f112d7b8448993714d3a9ecf7, type: 3}
+  - {fileID: 8300000, guid: 6cbb4d1a21cf04048ad7c96545266e4c, type: 3}
+  - {fileID: 8300000, guid: 0952a211e773b4541935fba2f3a871c1, type: 3}
+  <masterMixer>k__BackingField: {fileID: 24100000, guid: 522343562270d6b43a5ea8b6388d9195,
+    type: 2}
 --- !u!1 &1781889479
 GameObject:
   m_ObjectHideFlags: 0
