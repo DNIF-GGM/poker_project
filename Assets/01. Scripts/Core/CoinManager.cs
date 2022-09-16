@@ -5,7 +5,7 @@ public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance = null;
 
-    private int _currentCoin;
+    private int _currentCoin = 10;
     private TextMeshProUGUI bettedCoinTMP = null;
     private TextMeshProUGUI coinInfoTMP = null;
     public int BettedCoin { get; private set; } = 0;

@@ -10,6 +10,8 @@ public class Triple : UnitBase
 
         SetTarget(out Transform target, unitLayer);
 
+        if(target == null) return;
+
         UnitBase targetUnit = target.GetComponent<UnitBase>();
         
         Effect particle = PoolManager.Instance.Pop("Heal")as Effect;
