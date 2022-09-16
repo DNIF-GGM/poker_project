@@ -78,12 +78,14 @@ public class StageManager : MonoBehaviour
         {
             CoinManager.Instance.UpdateCoin(0f);
             UIManager.Instace.GameResult(false);
+            return;
         }
         else //이겼을 때
         {
             float coinIncreasePercent = 1.5f; //공식 만들어서 정해야됨
             CoinManager.Instance.UpdateCoin(coinIncreasePercent);
             UIManager.Instace.GameResult(true);
+            currentStageIndex++;
         }
 
         CoinManager.Instance.CoinBetting(-CoinManager.Instance.BettedCoin);
@@ -94,7 +96,6 @@ public class StageManager : MonoBehaviour
         foreach(MonsterBase m in Monsters) PoolManager.Instance.Push(m);
         foreach(UnitBase u in Units) PoolManager.Instance.Push(u);
         CardManager.Instance.CardSpawn();
-        currentStageIndex++;
 
         LoadStage(currentStageIndex);
     }

@@ -18,7 +18,7 @@ public class MonsterBase : UnitBase
     public override void Die()
     {
         _anim.SetTrigger("IsDie");
-        Debug.Log("주금");
+        Debug.Log("주금 : " + gameObject.name);
         PoolManager.Instance.Push(this);
 
         StageManager.Instance.Monsters.Remove(this);
@@ -69,14 +69,13 @@ public class MonsterBase : UnitBase
             }
             yield return new WaitForSeconds(_Data._cycleTime); //사이클 주기 실행
         }
-
-        Die();
     }
 
     public override void BasicAttack()
     {
         base.BasicAttack();
         _target.GetComponent<IDamageable>().OnDamage(10f);
+        Debug.Log(gameObject.name + " " + _target.name + "때렸대요");
     }
 
     IEnumerator Enabled(NavMeshAgent nav){
