@@ -156,7 +156,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Collider[] cols = Physics.OverlapSphere(transform.position, _Data._distance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
         Transform targetTrm = null;
-
         if (cols.Length <= 0)
         {
             target = targetTrm;

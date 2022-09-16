@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class TwoPair : UnitBase
 {
-    [Header("%제외 입력")]
     [SerializeField]
-    float debuffValue;
     public override void SkillAttack()
     {
         base.SkillAttack();
-        SetTarget(out Transform target,LayerMask.NameToLayer("Enemy"));
+        SetTarget(out Transform target, enemy);
 
-        Effect particle = PoolManager.Instance.Pop("Debuff")as Effect;
+        Effect particle = PoolManager.Instance.Pop("Debuff") as Effect;
+        particle.Init(3f);
+        particle.transform.position = target.position; 
         particle.transform.SetParent(target);
-        particle.transform.position = target.position;
 
-        target.GetComponent<IDamageable>().DownAtk(debuffValue/100);
+        target.GetComponent<IDamageable>().DownAtk((float)(25 / 100));
     }
 }
