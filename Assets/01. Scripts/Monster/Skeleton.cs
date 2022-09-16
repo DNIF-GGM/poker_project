@@ -16,4 +16,12 @@ public class Skeleton : MonsterBase
         AudioManager.Instance.PlayEffectAudio("Swing", _as);
         _as.Play();
     }
+
+        public override void Die()
+    {
+        base.Die();
+        
+        AudioManager.Instance.PlayEffectAudio("SkulDie", _as);
+        _as.Play();
+    }
 }

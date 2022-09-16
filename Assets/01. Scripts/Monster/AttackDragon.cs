@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AttackDragon : MonsterBase
 {
+
     Transform mouse;
     AudioSource _as;
+
     private void Start()
     {
         mouse = transform.Find("Mouse").GetComponent<Transform>();
-        _as = GetComponent<AudioSource>();
+        _as = GetComponent<AudioSource>();ong
     }
     public override void BasicAttack()
     {

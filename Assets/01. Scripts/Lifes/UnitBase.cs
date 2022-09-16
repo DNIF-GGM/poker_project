@@ -114,10 +114,16 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     protected virtual void Update()
     {
         AnimeSet();
+
         _skillTimer += Time.deltaTime;
 
         if(_CurState.HasFlag(AgentState.Chase))
         {
+
+        IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
+        transform.LookAt(_target);
+        if(isChasing){
+
             Chase();
             if(CheckDistance(_Data._attackDistance, transform.position, _target.position))
             {

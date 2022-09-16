@@ -16,4 +16,12 @@ public class Spider : MonsterBase
         AudioManager.Instance.PlayEffectAudio("Swing", _as);
         _as.Play();
     }
+
+    public override void Die()
+    {
+        base.Die();
+        
+        AudioManager.Instance.PlayEffectAudio("BodyDrop", _as);
+        _as.Play();
+    }
 }
