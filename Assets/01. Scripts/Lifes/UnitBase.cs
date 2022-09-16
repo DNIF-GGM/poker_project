@@ -8,6 +8,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 
     [field: SerializeField]
     public AgentDataSO _Data { get; private set; } //SO
+
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
 
@@ -152,7 +153,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 
     protected void SetTarget(out Transform target, LayerMask layer, bool getShorter = true)
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _Data._attackDistance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
+        Collider[] cols = Physics.OverlapSphere(transform.position, _Data._distance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
         Transform targetTrm = null;
 
@@ -188,7 +189,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Vector3 factor = targetPos - performPos;
         float distanceWithTarget = Mathf.Sqrt(Mathf.Pow(factor.x, 2) + Mathf.Pow(factor.z, 2)); //피타고라스로 거리 구하기 Vector3.Distance는 컴퓨터가 싫어해요!
 
-        return (dist < distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
+        return (dist > distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
     }
 
     private void IncreaseTimer(ref float timer, float targetTime)
