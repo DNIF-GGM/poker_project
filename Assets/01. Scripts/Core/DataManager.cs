@@ -23,7 +23,7 @@ public class DataManager : MonoBehaviour
 
     private bool TryReadJson<T>(out T data)
     {
-        string json = File.ReadAllText(GetPath<T>()); 
+        string json = PlayerPrefs.GetString(typeof(T).ToString());//File.ReadAllText(GetPath<T>()); 
 
         if (json.Length > 0)
         {
@@ -41,13 +41,14 @@ public class DataManager : MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(data);
 
-        File.WriteAllText(GetPath<T>(), json);
+        PlayerPrefs.SetString(typeof(T).ToString(), json);
+        //File.WriteAllText(GetPath<T>(), json);
     }
 
     private string GetPath<T>()
     {
-        //빌드할 때 경로 Application.persistentDataPath + "/Asset" 으로 변경해야댐
-        return "./Assets/04. Json/" + typeof(T) + ".json";
+        //빌드할 때 경로 Application.persistentDataPath + "/Assets" 으로 변경해야댐
+        return Application.persistentDataPath + @"/04. Json" + typeof(T) + ".json";
     }
 
     private void OnDisable()
