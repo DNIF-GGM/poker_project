@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject _escPanel;
     [SerializeField] private GameObject _settingPanel;
+    [SerializeField] private Slider _bgmSlider;
+    [SerializeField] private Slider _sfxSlider;
 
     [SerializeField] private GameObject _onMuteImg;
 
@@ -34,6 +36,16 @@ public class PauseManager : MonoBehaviour
                 }
             }
         }
+
+        AudioSetting();
+    }
+
+    private void AudioSetting()
+    {
+        if (_bgmSlider.value == _bgmSlider.minValue) AudioManager.Instance.masterMixer.SetFloat("BGM", -80);
+        else AudioManager.Instance.masterMixer.SetFloat("BGM", _bgmSlider.value);
+        if (_sfxSlider.value == _sfxSlider.minValue) AudioManager.Instance.masterMixer.SetFloat("SFX", -80);
+        else AudioManager.Instance.masterMixer.SetFloat("SFX", _sfxSlider.value);
     }
 
     public void Continue(){
@@ -47,7 +59,10 @@ public class PauseManager : MonoBehaviour
     }
 
     public void Exit(){
-        (_onSetting ? _settingPanel : _escPanel).gameObject.SetActive(false);
+        if(_onSetting) _settingPanel.SetActive(false);
+        else{
+            SceneLoader.Instance.LoadScene("Intro");
+        }
     }
 
     public void Mute(){
