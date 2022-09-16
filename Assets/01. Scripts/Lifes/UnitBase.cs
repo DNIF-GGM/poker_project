@@ -18,7 +18,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 
     private float _unitHp = 0f; //현재 체력
 
-
+    protected bool isChasing = false;
     private float _skillTimer = 0f; //현재 스킬 타이머 (얘가 스킬 delay보다 높을 때 스킬 실행)
     protected Material mat;
     protected Transform _target; //공격 타겟 (죽을 때까지 바뀌지 않음)
@@ -108,6 +108,10 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     {
         AnimeSet();
         IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
+
+        if(isChasing){
+            Chase();
+        }
     }
 
     private void OnDisable()
@@ -142,9 +146,10 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
                 switch (_CurState)
                 {
                     case AgentState.Chase:
-                        Chase(); //Chase일 때 적을 쫓는 유니티 이벤트 실행
+                        isChasing = true;
                         break;
                     case AgentState.Attack:
+                        isChasing = false;
                         if (CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); ////Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
                         else BasicAttack(); ////Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
                         break;
