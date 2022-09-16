@@ -11,8 +11,6 @@ public class AttackDragon : MonsterBase
         mouse = transform.Find("Mouse").GetComponent<Transform>();
         _as = GetComponent<AudioSource>();
     }
-
-
     public override void BasicAttack()
     {
         FireBall fireBall = PoolManager.Instance.Pop("FireBall") as FireBall;

@@ -75,7 +75,6 @@ public class MonsterBase : UnitBase
     {
         base.BasicAttack();
         _target.GetComponent<IDamageable>().OnDamage(10f);
-        Debug.Log(gameObject.name + " " + _target.name + "때렸대요");
     }
 
     IEnumerator Enabled(NavMeshAgent nav){
