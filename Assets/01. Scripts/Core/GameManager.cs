@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         if(Instance == null) Instance = this;
         // if(Instance != null) { Debug.LogWarning("Multiple GameManager Instance is Running, Destroy This"); Destroy(gameObject); return; }
-        // else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+        //else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
 
         PoolManager.Instance = new PoolManager(transform.GetChild(0));
         foreach(PoolableMono p in _poolingList){
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         CardManager.Instance = gameObject.GetComponent<CardManager>();
         StageManager.Instance = gameObject.GetComponent<StageManager>();
         CoinManager.Instance = gameObject.AddComponent<CoinManager>();
+        UIManager.Instace = gameObject.GetComponent<UIManager>();
     }
 
     public bool CardGenealogy(List<CardEnum> cards, out string name){

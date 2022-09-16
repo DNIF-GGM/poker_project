@@ -12,7 +12,7 @@ public class Flush : UnitBase
             if(c.GetComponent<IDamageable>() != null || !c.transform.CompareTag("Enemy")) continue;
             c.GetComponent<IDamageable>().OnDamage(7);
         }
-        Effect particle = PoolManager.Instance.Pop("Explosion")as Effect;
+        Effect particle = PoolManager.Instance.Pop("Explosion") as Effect;
         particle.transform.SetParent(_target);
         particle.transform.position= _target.position;
 

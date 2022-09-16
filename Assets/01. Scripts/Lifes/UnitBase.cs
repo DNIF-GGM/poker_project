@@ -39,7 +39,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     }
     public virtual void Chase()
     {
-        print(_target.position);
         nav.SetDestination(_target.position);
         nav.enabled = true;
     }
@@ -109,9 +108,11 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         AnimeSet();
         IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
 
+
         if(isChasing){
             Chase();
         }
+
     }
 
     private void OnDisable()
@@ -179,7 +180,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Collider[] cols = Physics.OverlapSphere(transform.position, _Data._distance, layer); //필드 센터에서 필드의 대각선의 반 만큼 오버랩 할 예정
 
         Transform targetTrm = null;
-
         if (cols.Length <= 0)
         {
             target = targetTrm;

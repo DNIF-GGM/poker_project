@@ -1236,7 +1236,7 @@ GameObject:
   - component: {fileID: 4823165151933074631}
   - component: {fileID: 4823165151933074629}
   - component: {fileID: 4823165151933074628}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SmallKnightWhite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1294,8 +1294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_Data>k__BackingField: {fileID: 11400000, guid: c77c1bc995a40314e8b055f6657904dd,
     type: 2}
-  <_CurState>k__BackingField: 0
-  _target: {fileID: 0}
   <SpawnPos>k__BackingField: {x: 2, y: 2, z: 0}
 --- !u!195 &4823165151933074628
 NavMeshAgent:

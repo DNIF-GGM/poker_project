@@ -1,34 +1,32 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance = null;
 
-    private void Awake()
-    {
-        if(Instance != null) { Debug.LogWarning("Multiple SceneLoader Instance is Running, Destroy This"); Destroy(gameObject); return; }
-        else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+    private void Awake() {
+        if(Instance == null) Instance = this;
     }
 
-    //씬 체인지
-    public void LoadScence(string sceneName)
+    [SerializeField] private Image _loadingPanel;
+    [SerializeField] private Slider _loadingSlider;
+
+    public void LoadScene(string sceneName)
     {
-        //닷트윈 넣어야댐
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    //씬 삭제
-    public void UnloadScene(string sceneName)
+    IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        //닷트윈 넣어야댐
-        SceneManager.UnloadSceneAsync(sceneName);
-    }
-
-    //씬 추가
-    public void AddScene(string sceneName)
-    {
-        //닷트윈 넣어야댐
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        _loadingPanel.gameObject.SetActive(true);
+        AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncOper.isDone)
+        {
+            yield return null;
+            _loadingSlider.value = asyncOper.progress;
+        }
     }
 }

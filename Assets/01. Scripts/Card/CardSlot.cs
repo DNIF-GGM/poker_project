@@ -29,8 +29,9 @@ public class CardSlot : MonoBehaviour
             return;
         }
         Card card = PoolManager.Instance.Pop("Card") as Card;
-        card.GetComponent<RectTransform>().localScale = new Vector3(30, 30, 30);
-        card.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
+        card.transform.localScale = new Vector3(30, 30, 30);
+        card.transform.rotation = Quaternion.Euler(0, 0, 180);
+        card.streamVector = SlotManager.Instance.currentSelectedCard.streamVector;
         
         Vector3 spawnPos = transform.position;
         spawnPos.x += (-maxCardCount / 2 + transform.childCount) * cardSpawnFactor.x;
