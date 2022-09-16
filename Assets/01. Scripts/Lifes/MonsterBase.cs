@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterBase : UnitBase
 {
@@ -9,6 +10,9 @@ public class MonsterBase : UnitBase
 
     public override void Reset()
     {
+        NavMeshAgent nav = GetComponent<NavMeshAgent>();
+
+        StartCoroutine(Enabled(nav));
     }
 
     public override void Die()
@@ -73,5 +77,11 @@ public class MonsterBase : UnitBase
     {
         base.BasicAttack();
         _target.GetComponent<IDamageable>().OnDamage(10f);
+    }
+
+    IEnumerator Enabled(NavMeshAgent nav){
+        nav.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        nav.enabled = true;
     }
 }

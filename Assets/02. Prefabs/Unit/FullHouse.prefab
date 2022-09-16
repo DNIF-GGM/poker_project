@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: -6503866719070478095}
   m_Layer: 6
   m_Name: FullHouse
-  m_TagString: Unit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

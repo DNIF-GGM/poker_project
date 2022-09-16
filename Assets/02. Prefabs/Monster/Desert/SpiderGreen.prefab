@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 1616098158695709588}
   - component: {fileID: 1671352248437413850}
   - component: {fileID: 1613259031232278381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpiderGreen
   m_TagString: Enemy
   m_Icon: {fileID: 0}
