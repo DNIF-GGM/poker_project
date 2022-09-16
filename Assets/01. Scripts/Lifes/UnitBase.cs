@@ -143,9 +143,11 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
                 switch (_CurState)
                 {
                     case AgentState.Chase:
+                        nav.isStopped = false;
                         isChasing = true;
                         break;
                     case AgentState.Attack:
+                        nav.isStopped = true;
                         isChasing = false;
                         if (CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); ////Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
                         else BasicAttack(); ////Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
