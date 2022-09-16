@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 5179134504372867844}
   - component: {fileID: 5179134504372867845}
   - component: {fileID: 5179134504372867846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpiderRed
   m_TagString: Enemy
   m_Icon: {fileID: 0}

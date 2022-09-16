@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 2137290440785118819}
   - component: {fileID: 2137290440785118820}
   - component: {fileID: 2137290440785118821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpiderPurple
   m_TagString: Enemy
   m_Icon: {fileID: 0}
