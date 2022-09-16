@@ -6,6 +6,6 @@ public class StartGame : MonoBehaviour
 {
     public void DoStart()
     {
-        SceneLoader.Instance.LoadScene("InGame");
+        SceneLoader.Instance.LoadScene("Main");
     }
 }

@@ -42,23 +42,17 @@ public class AudioManager : MonoBehaviour
     {
         player.clip = null;
         player.clip = clips[clipName];
-
-        player.volume = (float)(DataManager.Instance.userSetting.effectVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 
     public void PlaySystemAudio(string clipName)
     {
         systemAudioPlayer.clip = null;
         systemAudioPlayer.clip = clips[clipName];
-
-        systemAudioPlayer.volume = (float)(DataManager.Instance.userSetting.systemVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 
     public void PlayBGMAudio(string clipName)
     {
         bgmAudioPlayer.clip = null;
         bgmAudioPlayer.clip = clips[clipName];
-
-        bgmAudioPlayer.volume = (float)(DataManager.Instance.userSetting.bgmVolume * DataManager.Instance.userSetting.masterVolume) / 100f;
     }
 }
