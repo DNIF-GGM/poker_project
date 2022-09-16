@@ -77,13 +77,13 @@ public class StageManager : MonoBehaviour
         if(isLose) //졌을 때
         {
             CoinManager.Instance.UpdateCoin(0f);
-            //패배 알림 패널 띄우기
+            UIManager.Instace.GameResult(false);
         }
         else //이겼을 때
         {
-            float coinIncreasePercent = 1; //공식 만들어서 정해야됨
+            float coinIncreasePercent = 1.5f; //공식 만들어서 정해야됨
             CoinManager.Instance.UpdateCoin(coinIncreasePercent);
-            //승리 알림 패널 띄우기
+            UIManager.Instace.GameResult(true);
         }
 
         CoinManager.Instance.CoinBetting(-CoinManager.Instance.BettedCoin);

@@ -37,7 +37,7 @@ public class MonsterBase : UnitBase
 
         if(_target == null) //타겟이 없으면 타겟 재지정
             SetTarget(out _target, unitLayer);
-
+        if(_target == null) return returnState;
         if (CheckDistance(_Data._attackDistance, transform.position, _target.position)) //타겟하고 시전 위치하고 거리 계산
             returnState = AgentState.Attack; //사정거리 안이면 Attack
         else 
