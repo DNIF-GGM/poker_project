@@ -39,11 +39,20 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     }
     public virtual void Chase()
     {
+        nav.isStopped = false;
         nav.SetDestination(_target.position);
         nav.enabled = true;
     }
     public virtual void BasicAttack()
     {
+        nav.isStopped = true;
+        Vector3 rotate = transform.eulerAngles;
+        Vector3 rotateDir = (transform.position - _target.position).normalized;
+        float angle = Mathf.Atan2(rotateDir.y, rotateDir.x) * Mathf.Rad2Deg;
+        rotate.y = angle + 90f;
+        //transform.rotation = Quaternion.Euler(rotate);
+
+        transform.rotation = Quaternion.Euler(_target.position - transform.position);
         _anim.SetTrigger("IsAttack");
         _target.GetComponent<IDamageable>().OnDamage(_Data._power);
         Debug.Log(gameObject.name + " " + _target.name + "때렸대요");
@@ -105,7 +114,17 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     protected virtual void Update()
     {
         AnimeSet();
-        IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
+        _skillTimer += Time.deltaTime;
+
+        if(_CurState.HasFlag(AgentState.Chase))
+        {
+            Chase();
+            if(CheckDistance(_Data._attackDistance, transform.position, _target.position))
+            {
+                _CurState = AgentState.Attack;
+                BasicAttack();
+            }
+        }
     }
 
     private void OnDisable()
@@ -143,8 +162,10 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
                         Chase(); //Chase일 때 적을 쫓는 유니티 이벤트 실행
                         break;
                     case AgentState.Attack:
-                        if (CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); ////Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
-                        else BasicAttack(); ////Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
+                        Debug.Log("Attack Access");
+                        if (CheckTimer(ref _skillTimer, _Data._delay)) SkillAttack(); //Attack일 때 스킬 타이머가 delay보다 높으면 타이머 초기화 후 스킬 유니티 이벤트 실행
+                        else BasicAttack(); //Attack일 때 스킬 타이머가 delay보다 낮다면 평타 유니티 이벤트 실행
+                        Debug.Log("Attack Escape");
                         break;
                 }
             }
@@ -205,11 +226,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         return (dist > distanceWithTarget); //사정거리 안에 들어왔을 때 true 밖에있을 때 false
     }
 
-    private void IncreaseTimer(ref float timer, float targetTime)
-    {
-        while (timer <= targetTime) //타이머가 이미 쿨타임을 넘겼는데도 무지성으로 증가하는 거 방지하기 위한 while문
-            timer += Time.deltaTime;
-    }
     public void DownAtk(float value)
     {
         _Data._power *= value;

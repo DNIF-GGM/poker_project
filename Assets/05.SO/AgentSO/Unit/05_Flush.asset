@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 05_Flush
   m_EditorClassIdentifier: 
   controller: {fileID: 22100000, guid: e6cf5b48f74f50949adfdeb159b21cce, type: 2}
-  _skillDamage: 0
+  _skillDamage: 20
   _hp: 50
-  _cycleTime: 0.5
-  _distance: 10
+  _cycleTime: 3
+  _distance: 10000
   _attackDistance: 3
-  _speed: 5
-  _delay: 1
-  _power: 50
+  _speed: 2
+  _delay: 3
+  _power: 10
