@@ -6,5 +6,4 @@ public class UserSetting
 {
     [JsonProperty("sfxVolume")] public int sfxVolume;
     [JsonProperty("bgmVolume")] public int bgmVolume;
-    [JsonProperty("masterVolume")] public int masterVolume;
 }

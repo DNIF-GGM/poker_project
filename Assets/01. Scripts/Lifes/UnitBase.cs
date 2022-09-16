@@ -46,12 +46,13 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     {
         _anim.SetTrigger("IsAttack");
         _target.GetComponent<IDamageable>().OnDamage(_Data._power);
+        Debug.Log(gameObject.name + " " + _target.name + "때렸대요");
     }
     public virtual void Die()
     {
         _anim.SetTrigger("IsDie");
-        StartCoroutine(Dissolve());
-        Debug.Log("주금");
+        //StartCoroutine(Dissolve());
+        Debug.Log("주금 : " + gameObject.name);
         StageManager.Instance.Units.Remove(this);
         PoolManager.Instance.Push(this);
         if(StageManager.Instance.Units.Count <= 0)
@@ -67,8 +68,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         {
             Die();
         }
-
-        Debug.Log("마즘");
     }
 
     private IEnumerator FightCoroutine()
@@ -107,12 +106,9 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     {
         AnimeSet();
         IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
-
-
         if(isChasing){
             Chase();
         }
-
     }
 
     private void OnDisable()
@@ -158,8 +154,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
             }
             yield return new WaitForSeconds(_Data._cycleTime); //사이클 주기 실행
         }
-
-        Die();
     }
 
     private bool CheckTimer(ref float timer, float targetTime)

@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour
         if(!TryReadJson<UserData>(out userData))
             userData = new UserData() {};
         if(!TryReadJson<UserSetting>(out userSetting))
-            userSetting = new UserSetting() { sfxVolume = 5, masterVolume = 5, bgmVolume = 5 };
+            userSetting = new UserSetting() { sfxVolume = 5, bgmVolume = 5 };
     }
 
     private bool TryReadJson<T>(out T data)
