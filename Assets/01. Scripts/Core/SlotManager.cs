@@ -32,15 +32,11 @@ public class SlotManager : MonoBehaviour
             Cursor.visible = true;
             isDrag = false;
 
-            RectTransform rect;
-
             Card card = PoolManager.Instance.Pop("Card") as Card;
-            rect = card.GetComponent<RectTransform>();
-            rect.SetParent(CardManager.Instance._cardParentTrm);
-            rect.anchoredPosition3D = new Vector3(rect.anchoredPosition3D.x, rect.anchoredPosition.y, 0);
-            rect.localRotation = Quaternion.Euler(0, 0, 180);
-            rect.localScale = new Vector3(100, 100, 100);
-
+            card.transform.SetParent(CardManager.Instance._cardParentTrm);
+            card.transform.position = currentSelectedCard.streamVector;
+            card.transform.localScale = new Vector3(100, 100, 100);
+            card.transform.rotation = Quaternion.Euler(0, 0, 180);
             card.CardStatusSet(currentSelectedCard.cardSO);
 
             ResetSelectedCard();

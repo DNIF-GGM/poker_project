@@ -11,6 +11,8 @@ public class Card : PoolableMono {
     public Material cardMat {get => _cardMat;}
     public CardSlot Slot { get; set; } = null;
 
+    public Vector3 streamVector;
+
     public CardSO cardSO {get; private set;}
 
     public bool isOnSlot {get; set;} = false;
