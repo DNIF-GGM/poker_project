@@ -16,4 +16,12 @@ public class Wizard : MonsterBase
         AudioManager.Instance.PlayEffectAudio("WizardAttack", _as);
         _as.Play();
     }
+
+    public override void Die()
+    {
+        base.Die();
+        
+        AudioManager.Instance.PlayEffectAudio("BodyDrop", _as);
+        _as.Play();
+    }
 }

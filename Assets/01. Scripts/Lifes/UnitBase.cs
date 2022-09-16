@@ -106,6 +106,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     {
         AnimeSet();
         IncreaseTimer(ref _skillTimer, _Data._delay); //스킬 타이머 증가
+        transform.LookAt(_target);
         if(isChasing){
             Chase();
         }
