@@ -5,6 +5,14 @@ public class MonsterBase : UnitBase
 {
     private LayerMask unitLayer = 1 << 6;
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if(Input.GetKeyDown(KeyCode.K))
+            BasicAttack();
+    }
+
     protected override AgentState GetState()
     {
         AgentState returnState = AgentState.Idle; //default 값 Idle 세팅
