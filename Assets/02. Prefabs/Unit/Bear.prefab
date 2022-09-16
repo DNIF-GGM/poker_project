@@ -2074,9 +2074,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9041305580240358468}
   - component: {fileID: 3141550260389025342}
-  - component: {fileID: 1751215972195627471}
   - component: {fileID: 1751215972195627470}
-  m_Layer: 0
+  - component: {fileID: 84532158}
+  m_Layer: 3
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,7 +2120,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!195 &1751215972195627471
+--- !u!114 &1751215972195627470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517145999583188734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce69d6c400c8e94696cba987ee49d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <_Data>k__BackingField: {fileID: 11400000, guid: d598b6157c3f4e746a2d12a2c3ae824f,
+    type: 2}
+--- !u!195 &84532158
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2142,20 +2156,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1751215972195627470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8517145999583188734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ce69d6c400c8e94696cba987ee49d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <_Data>k__BackingField: {fileID: 11400000, guid: d598b6157c3f4e746a2d12a2c3ae824f,
-    type: 2}
 --- !u!1 &8593730791827053476
 GameObject:
   m_ObjectHideFlags: 0
