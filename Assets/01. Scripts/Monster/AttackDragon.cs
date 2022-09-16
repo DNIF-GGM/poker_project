@@ -11,7 +11,7 @@ public class AttackDragon : MonsterBase
     private void Start()
     {
         mouse = transform.Find("Mouse").GetComponent<Transform>();
-        _as = GetComponent<AudioSource>();ong
+        _as = GetComponent<AudioSource>();
     }
     public override void BasicAttack()
     {

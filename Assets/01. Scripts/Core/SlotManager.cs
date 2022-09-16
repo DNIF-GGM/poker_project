@@ -15,6 +15,8 @@ public class SlotManager : MonoBehaviour
                 if(hit.collider != null){
                     if(!hit.collider.CompareTag("Card") || isDrag) return;
 
+                    AudioManager.Instance.PlaySystemAudio("Click_sound_9");
+
                     currentSelectedCard = hit.collider.GetComponent<Card>();
                     isDrag = true;
                     Cursor.visible = false;

@@ -4,6 +4,6 @@ using Newtonsoft.Json;
 [System.Serializable]
 public class UserSetting
 {
-    [JsonProperty("sfxVolume")] public int sfxVolume;
-    [JsonProperty("bgmVolume")] public int bgmVolume;
+    [JsonProperty("sfxVolume")] public float sfxVolume;
+    [JsonProperty("bgmVolume")] public float bgmVolume;
 }

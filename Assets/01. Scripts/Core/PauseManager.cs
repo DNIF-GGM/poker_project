@@ -16,6 +16,12 @@ public class PauseManager : MonoBehaviour
     private bool _isPause = false;
     private bool _onSetting = false;
 
+    private void Start()
+    {
+        _bgmSlider.value = DataManager.Instance.userSetting.bgmVolume;
+        _sfxSlider.value = DataManager.Instance.userSetting.sfxVolume;
+    }
+
     private void Update() {
         Time.timeScale = (_isPause) ? 0f : 1f;
 
@@ -23,6 +29,7 @@ public class PauseManager : MonoBehaviour
             _isPause = !_isPause;
 
             if(_isPause){
+                AudioManager.Instance.PauseBGM(true);
                 _escPanel.SetActive(true);
             }
             else{
@@ -32,6 +39,7 @@ public class PauseManager : MonoBehaviour
                     _onSetting = false;
                 }
                 else{
+                    AudioManager.Instance.PauseBGM(false);
                     _escPanel.SetActive(false);
                 }
             }
@@ -42,10 +50,26 @@ public class PauseManager : MonoBehaviour
 
     private void AudioSetting()
     {
-        if (_bgmSlider.value == _bgmSlider.minValue) AudioManager.Instance.masterMixer.SetFloat("BGM", -80);
-        else AudioManager.Instance.masterMixer.SetFloat("BGM", _bgmSlider.value);
-        if (_sfxSlider.value == _sfxSlider.minValue) AudioManager.Instance.masterMixer.SetFloat("SFX", -80);
-        else AudioManager.Instance.masterMixer.SetFloat("SFX", _sfxSlider.value);
+        if (_bgmSlider.value == _bgmSlider.minValue)
+        {
+            AudioManager.Instance.masterMixer.SetFloat("BGM", -80);
+            DataManager.Instance.userSetting.bgmVolume = -80;
+        } 
+        else
+        {
+            AudioManager.Instance.masterMixer.SetFloat("BGM", _bgmSlider.value);
+            DataManager.Instance.userSetting.bgmVolume = _bgmSlider.value;
+        }
+        if (_sfxSlider.value == _sfxSlider.minValue)
+        {
+            AudioManager.Instance.masterMixer.SetFloat("SFX", -80);
+            DataManager.Instance.userSetting.sfxVolume = -80;
+        }
+        else 
+        {
+            AudioManager.Instance.masterMixer.SetFloat("SFX", _sfxSlider.value);
+            DataManager.Instance.userSetting.sfxVolume = _sfxSlider.value;
+        }
     }
 
     public void Continue(){

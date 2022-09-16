@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,8 +31,14 @@ public class AudioManager : MonoBehaviour
             clips.Add(ac.name, ac);
         }
 
-        // systemAudioPlayer = transform.GetChild(0).GetComponent<AudioSource>();
-        // bgmAudioPlayer = transform.GetChild(1).GetComponent<AudioSource>();
+        systemAudioPlayer = transform.GetChild(0).GetComponent<AudioSource>();
+        bgmAudioPlayer = transform.GetChild(1).GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        masterMixer.SetFloat("BGM", DataManager.Instance.userSetting.bgmVolume);
+        masterMixer.SetFloat("SFX", DataManager.Instance.userSetting.sfxVolume);
     }
 
     private void Update() {
@@ -40,19 +47,42 @@ public class AudioManager : MonoBehaviour
 
     public void PlayEffectAudio(string clipName, AudioSource player)
     {
+        if(clipName.Length <= 0)
+        {
+            player.Pause();
+            return;
+        } 
+
         player.clip = null;
         player.clip = clips[clipName];
+        player.Play();
     }
 
     public void PlaySystemAudio(string clipName)
     {
+        if(clipName.Length <= 0)
+        {
+            systemAudioPlayer.Pause();
+            return;
+        } 
+
         systemAudioPlayer.clip = null;
         systemAudioPlayer.clip = clips[clipName];
+        systemAudioPlayer.Play();
     }
 
     public void PlayBGMAudio(string clipName)
     {
         bgmAudioPlayer.clip = null;
         bgmAudioPlayer.clip = clips[clipName];
+        bgmAudioPlayer.Play();
+    }
+
+    public void PauseBGM(bool isPause)
+    {
+        if(isPause)
+            bgmAudioPlayer.Pause();
+        else
+            bgmAudioPlayer.Play();
     }
 }

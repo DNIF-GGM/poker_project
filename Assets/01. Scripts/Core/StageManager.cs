@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
     //스테이지 시작
     public void StartStage()
     {
-        Debug.Log("시작");
+        AudioManager.Instance.PlayBGMAudio("BattleBGM");
         OnFight = true;
 
         readyToFightPanel.SetActive(false);
@@ -76,17 +76,19 @@ public class StageManager : MonoBehaviour
 
         if(isLose) //졌을 때
         {
+            AudioManager.Instance.PlaySystemAudio("LostSound");
             CoinManager.Instance.UpdateCoin(0f);
             UIManager.Instace.GameResult(false);
             return;
         }
-        else //이겼을 때
-        {
-            float coinIncreasePercent = 1.5f; //공식 만들어서 정해야됨
-            CoinManager.Instance.UpdateCoin(coinIncreasePercent);
-            UIManager.Instace.GameResult(true);
-            currentStageIndex++;
-        }
+        //이겼을 때
+
+        //AudioManager.Instance.PlayBGMAudio("WinBGM");
+
+        float coinIncreasePercent = 1.5f; //공식 만들어서 정해야됨
+        CoinManager.Instance.UpdateCoin(coinIncreasePercent);
+        UIManager.Instace.GameResult(true);
+        currentStageIndex++;
 
         CoinManager.Instance.CoinBetting(-CoinManager.Instance.BettedCoin);
 
