@@ -1957,7 +1957,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.32713547
-  m_Height: 1.8772755
+  m_Height: 1.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.99, z: 0}
 --- !u!195 &2782138427655567947
@@ -1978,7 +1978,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.85
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1996,8 +1996,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_Data>k__BackingField: {fileID: 11400000, guid: 5273ee31bceb82543ac7ad375fba397e,
     type: 2}
-  <_CurState>k__BackingField: 0
-  _target: {fileID: 0}
   <SpawnPos>k__BackingField: {x: 0, y: 2, z: 0}
 --- !u!54 &-2833050672630995767
 Rigidbody:

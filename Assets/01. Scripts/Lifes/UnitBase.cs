@@ -39,6 +39,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     }
     public virtual void Chase()
     {
+        print(_target.position);
         nav.SetDestination(_target.position);
         nav.enabled = true;
     }
