@@ -7,12 +7,21 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance = null;
 
-    private void Awake() {
-        if(Instance == null) Instance = this;
-    }
-
     [SerializeField] private Image _loadingPanel;
     [SerializeField] private Slider _loadingSlider;
+
+    private void Awake() {
+        if(Instance == null) Instance = this;
+
+        SetLoadingPanel();
+    }
+    
+    private void SetLoadingPanel(){
+        _loadingPanel = GameObject.Find("UICanvas/Loading").GetComponent<Image>();
+        _loadingSlider = GameObject.Find("UICanvas/Loading/Slider").GetComponent<Slider>();
+
+        _loadingPanel.gameObject.SetActive(false);
+    }
 
     public void LoadScene(string sceneName)
     {
@@ -28,5 +37,7 @@ public class SceneLoader : MonoBehaviour
             yield return null;
             _loadingSlider.value = asyncOper.progress;
         }
+        yield return new WaitForSeconds(0.01f);
+        SetLoadingPanel();
     }
 }

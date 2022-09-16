@@ -2155,6 +2155,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1417821558}
+    - target: {fileID: 3406304027517344013, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406304027517344013, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+        type: 3}
+      propertyPath: m_MinValue
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 3406304027733772388, guid: 2590d4eaaa17e8e4689cfe703ef82950,
         type: 3}
       propertyPath: m_Name
@@ -2280,8 +2290,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1417821558}
+    - target: {fileID: 3406304028368084095, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406304028368084095, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+        type: 3}
+      propertyPath: m_MinValue
+      value: -40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2590d4eaaa17e8e4689cfe703ef82950, type: 3}
+--- !u!114 &783565562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3406304028368084095, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+    type: 3}
+  m_PrefabInstance: {fileID: 783565561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &783565563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3406304027517344013, guid: 2590d4eaaa17e8e4689cfe703ef82950,
+    type: 3}
+  m_PrefabInstance: {fileID: 783565561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &799130878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2753,7 +2797,7 @@ PrefabInstance:
     - target: {fileID: 2473910333748908358, guid: ab3c6d9f0872b9446988fca47c37b208,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2473910333748908359, guid: ab3c6d9f0872b9446988fca47c37b208,
         type: 3}
@@ -2863,12 +2907,12 @@ PrefabInstance:
     - target: {fileID: 5026147288521387598, guid: ab3c6d9f0872b9446988fca47c37b208,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5572040498956359128, guid: ab3c6d9f0872b9446988fca47c37b208,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab3c6d9f0872b9446988fca47c37b208, type: 3}
@@ -3825,7 +3869,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1417821557}
   - component: {fileID: 1417821556}
-  - component: {fileID: 1417821555}
   - component: {fileID: 1417821554}
   - component: {fileID: 1417821553}
   - component: {fileID: 1417821559}
@@ -3943,23 +3986,6 @@ MonoBehaviour:
   _cardPrefab: {fileID: -1843105541039660966, guid: c1ea4f081fa420a4b960da136c9cc7c8,
     type: 3}
   RerollCost: 5
---- !u!114 &1417821555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417821552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eecb8f91a19bbd4383a8dee6e43c5fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userSetting:
-    effectVolume: 0
-    systemVolume: 0
-    bgmVolume: 0
-    masterVolume: 0
 --- !u!114 &1417821556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4028,6 +4054,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _escPanel: {fileID: 1718803965}
   _settingPanel: {fileID: 313637353}
+  _bgmSlider: {fileID: 783565563}
+  _sfxSlider: {fileID: 783565562}
   _onMuteImg: {fileID: 1533879237}
 --- !u!114 &1417821559
 MonoBehaviour:
