@@ -1,23 +1,18 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance = null;
 
-    [SerializeField] private GameObject _loadingObj;
-    [SerializeField] private Vector3 _initPos;
-    [SerializeField] private Vector3 _lastPos;
-
-    private void Awake()
-    {
-        if(Instance != null) { Debug.LogWarning("Multiple SceneLoader Instance is Running, Destroy This"); Destroy(gameObject); return; }
-        else { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
-
-        _loadingObj.transform.position = _initPos;
-        _loadingObj.SetActive(false);
+    private void Awake() {
+        if(Instance == null) Instance = this;
     }
+
+    [SerializeField] private Image _loadingPanel;
+    [SerializeField] private Slider _loadingSlider;
 
     public void LoadScene(string sceneName)
     {
@@ -26,14 +21,12 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        float currentPos = _initPos.y;
-        _loadingObj.gameObject.SetActive(true);
+        _loadingPanel.gameObject.SetActive(true);
         AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncOper.isDone)
         {
             yield return null;
-            currentPos = Mathf.Lerp(_initPos.y, _lastPos.y, asyncOper.progress);
-            _loadingObj.transform.position = new Vector3(_initPos.x, currentPos, _initPos.z);
+            _loadingSlider.value = asyncOper.progress;
         }
     }
 }

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         CardManager.Instance = gameObject.GetComponent<CardManager>();
         StageManager.Instance = gameObject.GetComponent<StageManager>();
         CoinManager.Instance = gameObject.AddComponent<CoinManager>();
-        AudioManager.Instance = gameObject.GetComponent<AudioManager>();
+        UIManager.Instace = gameObject.GetComponent<UIManager>();
     }
 
     public bool CardGenealogy(List<CardEnum> cards, out string name){
