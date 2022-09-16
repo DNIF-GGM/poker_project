@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Collections;
 using UnityEngine.AI;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
 
     [field: SerializeField]
     public AgentDataSO _Data { get; private set; } //SO
-
     public AgentState _CurState { get; set; } //현재 상태 (Flag 달아놓음 Flag 연산으로)
     public float _UnitHp { get; set; } = 0f; //현재 체력
 
@@ -40,6 +40,7 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
     public virtual void Chase()
     {
         nav.SetDestination(_target.position);
+        nav.enabled = true;
     }
     public virtual void BasicAttack()
     {
@@ -51,6 +52,12 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         _anim.SetTrigger("IsDie");
         StartCoroutine(Dissolve());
         Debug.Log("주금");
+        StageManager.Instance.Units.Remove(this);
+        PoolManager.Instance.Push(this);
+        if(StageManager.Instance.Units.Count <= 0)
+        {
+            StageManager.Instance.StageOver(true);
+        }
     }
 
     public void OnDamage(float damage)
@@ -64,8 +71,9 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         Debug.Log("마즘");
     }
 
-    public override void Reset()
+    private IEnumerator FightCoroutine()
     {
+        yield return null;
         _anim.runtimeAnimatorController = _Data.controller;
 
         _UnitHp = _Data._hp; //체력 초기화
@@ -77,12 +85,21 @@ public class UnitBase : PoolableMono, IDamageable, IStateable
         mat = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
     }
 
+    public void StartFight()
+    {
+        StartCoroutine(FightCoroutine());
+    }
+
+    public override void Reset()
+    {
+        StartFight();
+    }
+
     private void Awake()
     {
         _anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
-        Reset();
         //_agent = GetComponent<NavMeshAgent>();   
     }
 

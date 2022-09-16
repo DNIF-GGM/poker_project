@@ -6,5 +6,5 @@ using UnityEngine;
 public class Stage
 {
     public Theme themeBackGound;
-    public List<Monster> stageMonster = new List<Monster>();
+    public List<MonsterBase> stageMonster = new List<MonsterBase>();
 }
