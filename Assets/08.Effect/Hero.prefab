@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5708762459891769084}
   - component: {fileID: 5708762459891769085}
   - component: {fileID: 5708762459891769074}
+  - component: {fileID: 170328204}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -4839,3 +4840,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &170328204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708762459891769075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b63aec8f31270489c2ab2a7bc8c814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
