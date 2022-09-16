@@ -5,16 +5,22 @@ using UnityEngine;
 public class Effect : PoolableMono
 {
     ParticleSystem particle;
+    float maxTime, time;
     public override void Reset()
     {
-        throw new System.NotImplementedException();
+        time = 0;
     }
     private void Start() {
         particle = GetComponent<ParticleSystem>();
     }
     private void Update() {
-        if(!particle.IsAlive()){
+        if(!particle.IsAlive()||time >=maxTime){
             PoolManager.Instance.Push(this);
         }
+        time += Time.deltaTime;
+    }
+    public void Init(float setTime)
+    {
+        maxTime = setTime;
     }
 }
