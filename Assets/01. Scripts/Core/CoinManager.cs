@@ -51,7 +51,7 @@ public class CoinManager : MonoBehaviour
     }
 
     public void UpdateCoin(float multipleNum){
-        _currentCoin += Mathf.RoundToInt(BettedCoin * multipleNum);
+        _currentCoin += Mathf.RoundToInt((float)BettedCoin * multipleNum);
     }
 
     public void CoinBetting(int value)
