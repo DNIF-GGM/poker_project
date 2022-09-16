@@ -10,7 +10,6 @@ public class CardSlot : MonoBehaviour
     [SerializeField] private List<CardEnum> _cardSlot = new List<CardEnum>();
     public List<CardEnum> _CardSlot => _cardSlot;
     [SerializeField] private Vector3 cardSpawnFactor = new Vector3();
-    [SerializeField] private Vector3 unitSpawnPos = new Vector3();
     [SerializeField] private int maxCardCount = 5;
 
     private void Start(){
@@ -30,8 +29,9 @@ public class CardSlot : MonoBehaviour
             return;
         }
         Card card = PoolManager.Instance.Pop("Card") as Card;
-        card.GetComponent<RectTransform>().localScale = new Vector3(30, 30, 30);
-        card.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 180);
+        card.transform.localScale = new Vector3(30, 30, 30);
+        card.transform.rotation = Quaternion.Euler(0, 0, 180);
+        card.streamVector = SlotManager.Instance.currentSelectedCard.streamVector;
         
         Vector3 spawnPos = transform.position;
         spawnPos.x += (-maxCardCount / 2 + transform.childCount) * cardSpawnFactor.x;
@@ -75,6 +75,7 @@ public class CardSlot : MonoBehaviour
                 UnitBase unit = PoolManager.Instance.Pop(outname) as UnitBase;
                 unit.transform.position = transform.position;
                 unit.transform.rotation = Quaternion.identity;
+                StageManager.Instance.Units.Add(unit);
             }
         }
 

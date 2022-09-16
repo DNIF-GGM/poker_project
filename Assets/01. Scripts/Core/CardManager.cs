@@ -8,11 +8,17 @@ public class CardManager : MonoBehaviour
     public static CardManager Instance = null;
 
     [SerializeField] private List<CardSO> _cardSo = new List<CardSO>();
+    [SerializeField] private Card _cardPrefab;
+
+    private float _width;
+    public float Width {get => _width; set => _width = value;}
+    private float _zIdx = 0;
+    private float ZIdx {get => _zIdx; set => _zIdx = value;}
 
     private List<CardSlot> _cardSlots = new List<CardSlot>();
     public List<CardSlot> CardSlots { get => _cardSlots; set => _cardSlots = value; }
 
-    private Transform _cardParentTrm;
+    public Transform _cardParentTrm { get; private set; }
 
     private bool _isSet = false;
     public bool IsSet {get => _isSet;}
@@ -24,6 +30,8 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         _cardParentTrm = GameObject.Find("CardCanvas").transform;
+        MeshRenderer renderer =  _cardPrefab.GetComponent<MeshRenderer>();
+        _width = renderer.bounds.max.x - renderer.bounds.min.x;
     }
 
     private void Update() {
@@ -74,17 +82,17 @@ public class CardManager : MonoBehaviour
     IEnumerator CardSpawnCoroutine(){
         isReroll = true;
         for(int i = 0; i < 13; i++){
-            RectTransform rect;
-
             Card card = PoolManager.Instance.Pop("Card") as Card;
-            rect = card.GetComponent<RectTransform>();
-            rect.SetParent(_cardParentTrm);
-            rect.anchoredPosition3D = new Vector3(rect.anchoredPosition3D.x, rect.anchoredPosition.y, 0);
-            rect.localRotation = Quaternion.Euler(0, 0, 180);
-            rect.localScale = new Vector3(100, 100, 100);
-            
+            card.transform.SetParent(_cardParentTrm);
+
+            Vector3 streamPos = _cardParentTrm.position + new Vector3(i * (_width / 2), _zIdx, 0);
+            card.transform.position = streamPos;
+            card.streamVector = streamPos;
+
+            card.transform.rotation = Quaternion.Euler(0, 0, 180);
             card.CardStatusSet(_cardSo[Random.Range(0, 52)]);
 
+            _zIdx += 0.01f;
             yield return new WaitForSecondsRealtime(0.02f);
         }
         isReroll = false;

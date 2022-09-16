@@ -6,10 +6,12 @@ public class Card : PoolableMono {
     [SerializeField] private CardEnum _cardEnum;
     [SerializeField] private NumberEnum _numberEnum;
     [SerializeField] private Material _cardMat;
-    
+
     public CardEnum cardEnum {get => _cardEnum;}
     public Material cardMat {get => _cardMat;}
     public CardSlot Slot { get; set; } = null;
+
+    public Vector3 streamVector;
 
     public CardSO cardSO {get; private set;}
 
@@ -43,6 +45,11 @@ public class Card : PoolableMono {
         Vector3 scale = GetComponent<RectTransform>().localScale;
 
         if(!SlotManager.Instance.isDrag) GetComponent<RectTransform>().DOScale(isOnSlot ? 30 : 100, 0.5f);
+    }
+
+    public void ResetPos()
+    {
+        
     }
 
     public override void Reset()

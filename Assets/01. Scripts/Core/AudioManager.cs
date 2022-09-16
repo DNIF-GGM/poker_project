@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
 
     [SerializeField] List<AudioClip> clipList = new List<AudioClip>();
+    [field: SerializeField] public AudioMixer masterMixer {get; private set;}
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
     private AudioSource systemAudioPlayer = null;
     private AudioSource bgmAudioPlayer = null;
+
+    public bool onMute {get; set;} = false;
 
     private void Awake()
     {
@@ -26,8 +30,12 @@ public class AudioManager : MonoBehaviour
             clips.Add(ac.name, ac);
         }
 
-        systemAudioPlayer = transform.GetChild(0).GetComponent<AudioSource>();
-        bgmAudioPlayer = transform.GetChild(1).GetComponent<AudioSource>();
+        // systemAudioPlayer = transform.GetChild(0).GetComponent<AudioSource>();
+        // bgmAudioPlayer = transform.GetChild(1).GetComponent<AudioSource>();
+    }
+
+    private void Update() {
+        masterMixer.SetFloat("MasterVolume", (onMute ? -80f : 0));
     }
 
     public void PlayEffectAudio(string clipName, AudioSource player)
