@@ -1,9 +1,31 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterBase : UnitBase
 {
+    [field : SerializeField]
+    public Vector3 SpawnPos { get; private set; } = new Vector3();
     private LayerMask unitLayer = 1 << 6;
+
+    public override void Reset()
+    {
+        NavMeshAgent nav = GetComponent<NavMeshAgent>();
+
+        StartCoroutine(Enabled(nav));
+    }
+
+    public override void Die()
+    {
+        _anim.SetTrigger("IsDie");
+        Debug.Log("주금");
+        PoolManager.Instance.Push(this);
+
+        StageManager.Instance.Monsters.Remove(this);
+
+        if(StageManager.Instance.Monsters.Count <= 0)
+            StageManager.Instance.StageOver(false);
+    }
 
     protected override void Update()
     {
@@ -55,5 +77,11 @@ public class MonsterBase : UnitBase
     {
         base.BasicAttack();
         _target.GetComponent<IDamageable>().OnDamage(10f);
+    }
+
+    IEnumerator Enabled(NavMeshAgent nav){
+        nav.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        nav.enabled = true;
     }
 }

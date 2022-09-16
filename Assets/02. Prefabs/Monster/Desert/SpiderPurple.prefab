@@ -500,9 +500,9 @@ GameObject:
   - component: {fileID: 2137290440785118819}
   - component: {fileID: 2137290440785118820}
   - component: {fileID: 2137290440785118821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpiderPurple
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_Data>k__BackingField: {fileID: 11400000, guid: c77c1bc995a40314e8b055f6657904dd,
     type: 2}
+  <SpawnPos>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!195 &2137290440785118821
 NavMeshAgent:
   m_ObjectHideFlags: 0

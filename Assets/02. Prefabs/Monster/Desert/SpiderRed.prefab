@@ -754,9 +754,9 @@ GameObject:
   - component: {fileID: 5179134504372867844}
   - component: {fileID: 5179134504372867845}
   - component: {fileID: 5179134504372867846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpiderRed
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_Data>k__BackingField: {fileID: 11400000, guid: c77c1bc995a40314e8b055f6657904dd,
     type: 2}
+  <SpawnPos>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!195 &5179134504372867846
 NavMeshAgent:
   m_ObjectHideFlags: 0
