@@ -1,8 +1,13 @@
 fileFormatVersion: 2
-guid: 0f810e39467e9c94c9e140d89c02f4d4
+<<<<<<<< HEAD:Assets/Mini Legion Rock Golem PBR HP Polyart.meta
+guid: 8aefe53701259814d9c492bb6d80ff0f
 folderAsset: yes
+========
+guid: a7b6914484a72b84188cf4b1e4c46c4b
+timeCreated: 1467220661
+licenseType: Store
+>>>>>>>> SEH00N:Assets/Lowpoly Toon Cat Lite/Demo/Cat_Lite_Demo.unity.meta
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

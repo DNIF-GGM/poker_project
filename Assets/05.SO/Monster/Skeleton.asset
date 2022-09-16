@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  _skillDamage: 0
-  _hp: 0
-  _cycleTime: 0
-  _distance: 0
-  _attackDistance: 0
-  _speed: 0
-  _delay: 0
-  _power: 0
+  _skillDamage: 5
+  _hp: 50
+  _cycleTime: 3
+  _distance: 10000
+  _attackDistance: 1
+  _speed: 5
+  _delay: 5
+  _power: 5

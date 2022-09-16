@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour
     private List<CardSlot> _cardSlots = new List<CardSlot>();
     public List<CardSlot> CardSlots { get => _cardSlots; set => _cardSlots = value; }
 
-    private Transform _cardParentTrm;
+    public Transform _cardParentTrm { get; private set; }
 
     private bool _isSet = false;
     public bool IsSet {get => _isSet;}

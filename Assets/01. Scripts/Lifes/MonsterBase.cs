@@ -3,7 +3,25 @@ using UnityEngine;
 
 public class MonsterBase : UnitBase
 {
+    [field : SerializeField]
+    public Vector3 SpawnPos { get; private set; } = new Vector3();
     private LayerMask unitLayer = 1 << 6;
+
+    public override void Reset()
+    {
+    }
+
+    public override void Die()
+    {
+        _anim.SetTrigger("IsDie");
+        Debug.Log("주금");
+        PoolManager.Instance.Push(this);
+
+        StageManager.Instance.Monsters.Remove(this);
+
+        if(StageManager.Instance.Monsters.Count <= 0)
+            StageManager.Instance.StageOver(false);
+    }
 
     protected override void Update()
     {
